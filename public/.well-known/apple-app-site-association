@@ -1,0 +1,45 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appID": "95793GC27L.com.SideShift",
+        "components": [
+          {
+            "/": "/tiktok/*",
+            "comment": "Matches any path for the main app."
+          }
+        ]
+      },
+      {
+        "appID": "95793GC27L.com.SideShift.Clip",
+        "components": [
+          {
+            "/": "/jobs/*",
+            "comment": "Matches any path that starts with /jobs/ for the app clip."
+          },
+          {
+            "/": "/{companyId}",
+            "comment": "Matches any path like /companyId for the app clip.",
+            "regex": true
+          }
+        ]
+      }
+    ]
+  },
+  "activitycontinuation": {
+    "apps": [
+      "95793GC27L.com.SideShift",
+      "95793GC27L.com.SideShift.Clip"
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "95793GC27L.com.SideShift"
+    ]
+  },
+  "appclips": {
+    "apps": [
+      "95793GC27L.com.SideShift.Clip"
+    ]
+  }
+}
