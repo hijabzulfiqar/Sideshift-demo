@@ -128,6 +128,7 @@ function ComparisonTable({
   col3Header,
   rows,
   ctaText,
+  ctaHref,
 }: {
   demoMode?: boolean;
   heading?: string;
@@ -137,6 +138,7 @@ function ComparisonTable({
   col3Header?: string;
   rows?: FeatureRow[];
   ctaText?: string;
+  ctaHref?: string;
 } = {}) {
   const variant = getHeroVariant();
   const isBrand = true;
@@ -225,7 +227,7 @@ function ComparisonTable({
               >
                 <Link
                   href={
-                    demoMode ? "/contact" : "https://app.sideshift.app/signup"
+                    demoMode ? (ctaHref ?? "/contact") : "https://app.sideshift.app/signup"
                   }
                 >
                   <button
@@ -314,7 +316,7 @@ function ComparisonTable({
                     <Link
                       href={
                         demoMode
-                          ? "/contact"
+                          ? (ctaHref ?? "/contact")
                           : "https://app.sideshift.app/signup"
                       }
                     >

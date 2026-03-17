@@ -166,11 +166,15 @@ function FAQ({
   customFaqData,
   customHeading,
   customSubheading,
+  ctaHref,
+  hideCta = false,
 }: {
   isCreator: boolean;
   customFaqData?: { id: number; question: string; answer: React.ReactNode }[];
   customHeading?: string;
   customSubheading?: string;
+  ctaHref?: string;
+  hideCta?: boolean;
 }) {
   const [expandedItem, setExpandedItem] = useState<number | null>(1);
   const faqData = customFaqData ?? (isCreator ? creatorFaqData : brandFaqData);
@@ -288,12 +292,12 @@ function FAQ({
             </div>
 
             {/* Still have questions? */}
-            {!isCreator && (
+            {!isCreator && !hideCta && (
               <div className="flex flex-col items-center gap-2 pt-4 min-[375px]:gap-3 min-[375px]:pt-6">
                 <p className="text-center text-[14px] text-gray-600 min-[375px]:text-base">
                   Still have questions?
                 </p>
-                <Link href="/contact">
+                <Link href={ctaHref ?? "/contact"}>
                   <Button variant="primary" size="sm" onClick={() => handleCTAClick('Book Strategy Call FAQ', true, variant)}>
                     <span>Book a Demo</span>
                   </Button>

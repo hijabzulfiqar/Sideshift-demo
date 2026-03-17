@@ -19,6 +19,7 @@ function SideShiftCreators({
   badgeLabel,
   defaultCategory = "health",
   hideFilters = false,
+  hideCta = false,
 }: {
   platformMode?: boolean;
   marketplaceMode?: boolean;
@@ -33,6 +34,7 @@ function SideShiftCreators({
   defaultCategory?: string;
   /** Hide all filter UI (countries, category tabs) — still filters by defaultCategory */
   hideFilters?: boolean;
+  hideCta?: boolean;
 } = {}) {
   const [activeCategory, setActiveCategory] = useState(defaultCategory);
   const [playingVideoId, setPlayingVideoId] = useState<number | null>(null);
@@ -42,8 +44,7 @@ function SideShiftCreators({
   const allCategoryCreators = creatorsData.filter(
     (c) => c.category === activeCategory,
   );
-  const baseCreators =
-    platformMode ? creatorsData : allCategoryCreators;
+  const baseCreators = platformMode ? creatorsData : allCategoryCreators;
 
   const count = baseCreators.length;
 
@@ -225,7 +226,9 @@ function SideShiftCreators({
             const isActive = offset === 0;
             const useTransition = !snapRef.current;
             if (snapRef.current && offset === 0) {
-              requestAnimationFrame(() => { snapRef.current = false; });
+              requestAnimationFrame(() => {
+                snapRef.current = false;
+              });
             }
 
             const FlagIcon = creator.countryFlag;
@@ -370,13 +373,15 @@ function SideShiftCreators({
         </div>
       </div>
 
-      <div className="mt-2 flex justify-center md:mt-6">
-        <Link href="/contact">
-          <button className="cta-button-dark cursor-pointer rounded-full border border-[#202020] px-6 py-3 text-base font-bold text-white transition-all active:scale-98">
-            Book a Demo
-          </button>
-        </Link>
-      </div>
+      {!hideCta && (
+        <div className="mt-2 flex justify-center md:mt-6">
+          <Link href="#book">
+            <button className="cta-button-dark cursor-pointer rounded-full border border-[#202020] px-6 py-3 text-base font-bold text-white transition-all active:scale-98">
+              Book a Demo
+            </button>
+          </Link>
+        </div>
+      )}
     </section>
   );
 }

@@ -24,10 +24,12 @@ function Hero({
   isCreator,
   overrides,
   demoMode = false,
+  hideSecondaryCta = false,
 }: {
   isCreator: boolean;
   overrides?: HeroOverrides;
   demoMode?: boolean;
+  hideSecondaryCta?: boolean;
 }) {
   const [variant, setVariant] = useState<HeroVariant>('A');
   const [hasMounted, setHasMounted] = useState(false);
@@ -147,7 +149,7 @@ const onHeroCTAClick = (cta: string) => {
                         <span>{overrides?.primaryCta?.text ?? (isCreator ? "Join as a Creator" : "Start Your Free Trial")}</span>
                       </Button>
                     </Link>
-                    <Link
+                    {!hideSecondaryCta && <Link
                       href={overrides?.secondaryCta?.href ?? (isCreator ? "https://app.sideshift.app/signup" : "/contact")}
                       className="max-[320px]:w-full"
                       onClick={() => onHeroCTAClick(overrides?.secondaryCta?.event ?? (isCreator ? "Explore Gigs" : "Book Demo from Hero"))}
@@ -155,7 +157,7 @@ const onHeroCTAClick = (cta: string) => {
                       <Button variant="secondary" className="max-[320px]:w-full">
                         <span>{overrides?.secondaryCta?.text ?? (isCreator ? "Explore Gigs" : "Book a Demo")}</span>
                       </Button>
-                    </Link>
+                    </Link>}
                   </>
                 )}
               </div>

@@ -257,11 +257,15 @@ function Testimonials({
   isCreator,
   caseStudies,
   demoMode = false,
+  ctaHref,
+  hideCta = false,
 }: {
   isCreator: boolean;
   /** Optional case studies to mix into the bento grid (subpage use) */
   caseStudies?: CaseStudy[];
   demoMode?: boolean;
+  ctaHref?: string;
+  hideCta?: boolean;
 }) {
   const variant = getHeroVariant();
   const cards = isCreator ? creatorCards : brandCards;
@@ -307,9 +311,9 @@ function Testimonials({
             </div>
 
             {/* CTA */}
-            {!isCreator && (
+            {!isCreator && !hideCta && (
               demoMode ? (
-                <Link href="/contact">
+                <Link href={ctaHref ?? "/contact"}>
                   <Button
                     variant="primary"
                     onClick={() =>
