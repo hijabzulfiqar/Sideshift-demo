@@ -43,7 +43,7 @@ export default function LandingPage() {
         <Bento isCreator={isCreator} />
         <Workflow isCreator={isCreator} />
         <Platform isCreator={isCreator} />
-        <SideShiftCreators marketplaceMode autoplayVideos={false} hideCta />
+        <SideShiftCreators marketplaceMode autoplayVideos={false} />
 
         {/* Trust builders — CTAs scroll back to #book */}
         <Testimonials isCreator={isCreator} demoMode hideCta />
