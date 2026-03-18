@@ -3,7 +3,12 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
-    domains: ["api.builder.io"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "api.builder.io",
+      },
+    ],
   },
   webpack(config) {
     config.module.rules.push({
