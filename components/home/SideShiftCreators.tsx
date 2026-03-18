@@ -19,7 +19,6 @@ function SideShiftCreators({
   badgeLabel,
   defaultCategory = "health",
   hideFilters = false,
-  hideCta = false,
 }: {
   platformMode?: boolean;
   marketplaceMode?: boolean;
@@ -34,12 +33,21 @@ function SideShiftCreators({
   defaultCategory?: string;
   /** Hide all filter UI (countries, category tabs) — still filters by defaultCategory */
   hideFilters?: boolean;
-  hideCta?: boolean;
 } = {}) {
   const [activeCategory, setActiveCategory] = useState(defaultCategory);
   const [playingVideoId, setPlayingVideoId] = useState<number | null>(null);
   const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
   const snapRef = useRef(false);
+
+  // ── Touch swipe support ──
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+  const isSwiping = useRef(false);
+  const didSwipe = useRef(false);
+
+  // ── Category dropdown state (mobile) ──
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const allCategoryCreators = creatorsData.filter(
     (c) => c.category === activeCategory,
@@ -95,6 +103,105 @@ function SideShiftCreators({
     [autoplayVideos, playingVideoId],
   );
 
+  // ── Autoplay the active (center) video ──
+  useEffect(() => {
+    if (autoplayVideos) return;
+    const activeCreator = extended[activeIndex];
+    if (!activeCreator) return;
+
+    // Pause previous video
+    if (playingVideoId !== null && playingVideoId !== activeCreator.id) {
+      const prevVideo = videoRefs.current.get(playingVideoId);
+      if (prevVideo) prevVideo.pause();
+    }
+
+    // Play the active video
+    const video = videoRefs.current.get(activeCreator.id);
+    if (video) {
+      video.play().catch(() => {});
+      setPlayingVideoId(activeCreator.id);
+    }
+  }, [activeIndex]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // ── Close dropdown on outside click ──
+  useEffect(() => {
+    if (!dropdownOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [dropdownOpen]);
+
+  // ── Touch swipe via overlay ref (passive: false to allow preventDefault) ──
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const touchOverlayRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = touchOverlayRef.current;
+    if (!el) return;
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartX.current = e.touches[0].clientX;
+      touchStartY.current = e.touches[0].clientY;
+      isSwiping.current = false;
+      didSwipe.current = false;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (touchStartX.current === null || touchStartY.current === null) return;
+      const dx = Math.abs(e.touches[0].clientX - touchStartX.current);
+      const dy = Math.abs(e.touches[0].clientY - touchStartY.current);
+      if (dx > dy && dx > 10) {
+        isSwiping.current = true;
+        e.preventDefault();
+      }
+    };
+
+    const onTouchEnd = (e: TouchEvent) => {
+      if (touchStartX.current === null) return;
+      const dx = e.changedTouches[0].clientX - touchStartX.current;
+      const threshold = 30;
+      if (isSwiping.current && Math.abs(dx) > threshold) {
+        didSwipe.current = true;
+        if (dx < 0) setActiveIndex((i) => i + 1);
+        else setActiveIndex((i) => i - 1);
+      } else if (!isSwiping.current) {
+        // It was a tap, not a swipe — let it pass through by simulating click
+        const target = document.elementFromPoint(
+          e.changedTouches[0].clientX,
+          e.changedTouches[0].clientY,
+        );
+        if (target) (target as HTMLElement).click();
+      }
+      touchStartX.current = null;
+      touchStartY.current = null;
+      isSwiping.current = false;
+    };
+
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchmove", onTouchMove, { passive: false });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchmove", onTouchMove);
+      el.removeEventListener("touchend", onTouchEnd);
+    };
+  }, []);
+
+  const handleCardClick = useCallback((index: number) => {
+    if (didSwipe.current) {
+      didSwipe.current = false;
+      return;
+    }
+    setActiveIndex(index);
+  }, []);
+
   const showCategoryBadge = !platformMode || !!badgeLabel;
 
   return (
@@ -125,7 +232,9 @@ function SideShiftCreators({
                 <p className="text-sm font-medium tracking-normal text-gray-500 md:text-base">
                   Browse by industry:
                 </p>
-                <div className="flex flex-wrap items-center justify-center gap-2">
+
+                {/* Desktop: pill buttons */}
+                <div className="hidden flex-wrap items-center justify-center gap-2 md:flex">
                   {industryFilters.map((ind) => (
                     <button
                       key={ind.label}
@@ -149,6 +258,58 @@ function SideShiftCreators({
                     </button>
                   ))}
                 </div>
+
+                {/* Mobile: dropdown */}
+                <div
+                  className="relative w-full max-w-xs md:hidden"
+                  ref={dropdownRef}
+                >
+                  <button
+                    onClick={() => setDropdownOpen((o) => !o)}
+                    className="flex w-full cursor-pointer items-center justify-between gap-2 rounded-full border border-gray-200 bg-white px-5 py-3 text-sm font-medium text-gray-900 shadow-sm"
+                  >
+                    <span className="flex items-center gap-2">
+                      {categoryIcons[activeCategory]}
+                      {industryFilters.find(
+                        (f) => f.categoryId === activeCategory,
+                      )?.label ??
+                        categories.find((c) => c.id === activeCategory)?.label}
+                    </span>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      className={`transition-transform ${dropdownOpen ? "rotate-180" : ""}`}
+                    >
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </button>
+                  {dropdownOpen && (
+                    <div className="absolute left-0 right-0 top-full z-50 mt-2 rounded-2xl border border-gray-200 bg-white py-1 shadow-lg">
+                      {industryFilters.map((ind) => (
+                        <button
+                          key={ind.label}
+                          onClick={() => {
+                            setActiveCategory(ind.categoryId);
+                            setDropdownOpen(false);
+                          }}
+                          className={`flex w-full cursor-pointer items-center gap-2.5 px-5 py-2.5 text-left text-sm font-medium transition-colors ${
+                            activeCategory === ind.categoryId
+                              ? "bg-gray-50 text-gray-900"
+                              : "text-gray-700 hover:bg-gray-50"
+                          }`}
+                        >
+                          {categoryIcons[ind.categoryId]}
+                          {ind.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           )}
@@ -158,11 +319,11 @@ function SideShiftCreators({
               <p className="text-sm font-medium tracking-normal text-gray-500 md:text-base">
                 Meet our creators from:
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-2">
+              <div className="inline-flex items-center justify-center gap-1 rounded-full border border-gray-100 bg-white/80 px-1.5 py-1.5 shadow-sm backdrop-blur-sm">
                 {countries.map((c) => (
                   <span
                     key={c.name}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-sm font-medium text-gray-800"
+                    className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
                   >
                     <c.Flag />
                     {c.name}
@@ -189,35 +350,96 @@ function SideShiftCreators({
           )}
 
           {!platformMode && !marketplaceMode && !hideFilters && (
-            <div className="mx-auto mt-8 flex max-w-[1000px] flex-wrap items-center justify-center gap-1 md:mt-12">
-              {categories.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3.5 py-2 text-sm font-medium transition-all md:px-4 md:py-2.5 md:text-[15px] ${
-                    activeCategory === cat.id
-                      ? "border-gray-200 bg-white text-gray-900 shadow-sm"
-                      : "border-transparent bg-transparent text-gray-700"
-                  }`}
-                >
-                  <span
-                    className={
+            <>
+              {/* Desktop: pill buttons */}
+              <div className="mx-auto mt-8 hidden max-w-[1000px] flex-wrap items-center justify-center gap-1 md:mt-12 md:flex">
+                {categories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    onClick={() => setActiveCategory(cat.id)}
+                    className={`inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3.5 py-2 text-sm font-medium transition-all md:px-4 md:py-2.5 md:text-[15px] ${
                       activeCategory === cat.id
-                        ? "text-gray-900"
-                        : "text-gray-700"
-                    }
+                        ? "border-gray-200 bg-white text-gray-900 shadow-sm"
+                        : "border-transparent bg-transparent text-gray-700"
+                    }`}
                   >
-                    {categoryIcons[cat.id]}
+                    <span
+                      className={
+                        activeCategory === cat.id
+                          ? "text-gray-900"
+                          : "text-gray-700"
+                      }
+                    >
+                      {categoryIcons[cat.id]}
+                    </span>
+                    {cat.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Mobile: dropdown */}
+              <div
+                className="relative mx-auto mt-6 w-full max-w-xs md:hidden"
+                ref={dropdownRef}
+              >
+                <button
+                  onClick={() => setDropdownOpen((o) => !o)}
+                  className="flex w-full cursor-pointer items-center justify-between gap-2 rounded-full border border-gray-200 bg-white px-5 py-3 text-sm font-medium text-gray-900 shadow-sm"
+                >
+                  <span className="flex items-center gap-2">
+                    {categoryIcons[activeCategory]}
+                    {categories.find((c) => c.id === activeCategory)?.label}
                   </span>
-                  {cat.label}
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    className={`transition-transform ${dropdownOpen ? "rotate-180" : ""}`}
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
                 </button>
-              ))}
-            </div>
+                {dropdownOpen && (
+                  <div className="absolute left-0 right-0 top-full z-50 mt-2 rounded-2xl border border-gray-200 bg-white py-1 shadow-lg">
+                    {categories.map((cat) => (
+                      <button
+                        key={cat.id}
+                        onClick={() => {
+                          setActiveCategory(cat.id);
+                          setDropdownOpen(false);
+                        }}
+                        className={`flex w-full cursor-pointer items-center gap-2.5 px-5 py-2.5 text-left text-sm font-medium transition-colors ${
+                          activeCategory === cat.id
+                            ? "bg-gray-50 text-gray-900"
+                            : "text-gray-700 hover:bg-gray-50"
+                        }`}
+                      >
+                        {categoryIcons[cat.id]}
+                        {cat.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </>
           )}
         </div>
       </div>
 
-      <div className="relative mt-10 h-[520px] overflow-hidden md:mt-14 md:h-[580px]">
+      <div
+        ref={carouselRef}
+        className="relative mt-10 h-[520px] overflow-hidden md:mt-14 md:h-[580px]"
+      >
+        {/* Invisible touch overlay — captures swipes on mobile, passes taps through */}
+        <div
+          ref={touchOverlayRef}
+          className="absolute inset-0 z-50 md:hidden"
+          style={{ touchAction: "none" }}
+        />
         <div className="absolute inset-0 flex items-center justify-center">
           {extended.map((creator, index) => {
             const offset = index - activeIndex;
@@ -243,7 +465,7 @@ function SideShiftCreators({
             return (
               <div
                 key={`${creator.id}-${index}`}
-                onClick={() => setActiveIndex(index)}
+                onClick={() => handleCardClick(index)}
                 className="absolute flex h-full cursor-pointer items-center justify-center"
                 style={{
                   width: cardWidth,
@@ -350,7 +572,7 @@ function SideShiftCreators({
                                 />
                               </svg>
                             </span>
-                            <span className="flex items-center gap-1.5 text-[13px] text-gray-600">
+                            <span className="inline-flex items-center gap-1.5 rounded-full bg-gray-50 px-2 py-0.5 text-[12px] font-medium text-gray-500">
                               <FlagIcon />
                               {creator.country}
                             </span>
@@ -373,15 +595,13 @@ function SideShiftCreators({
         </div>
       </div>
 
-      {!hideCta && (
-        <div className="mt-2 flex justify-center md:mt-6">
-          <Link href="#book">
-            <button className="cta-button-dark cursor-pointer rounded-full border border-[#202020] px-6 py-3 text-base font-bold text-white transition-all active:scale-98">
-              Book a Demo
-            </button>
-          </Link>
-        </div>
-      )}
+      <div className="mt-2 flex justify-center md:mt-6">
+        <Link href="https://app.sideshift.app/signup">
+          <button className="cta-button-dark cursor-pointer rounded-full border border-[#202020] px-6 py-3 text-base font-bold text-white transition-all active:scale-98">
+            Explore creators - it&apos;s free!
+          </button>
+        </Link>
+      </div>
     </section>
   );
 }
