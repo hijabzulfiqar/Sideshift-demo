@@ -199,9 +199,57 @@ function SideShiftCreators({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [dropdownOpen]);
 
-  // ── Pointer-based swipe (works on real mobile + DevTools simulation) ──
+  // ── Swipe: native touch events (mobile) + pointer events (desktop) ──
+  // Native touch listeners registered with passive:false so we can preventDefault
+  // on horizontal swipes while still allowing vertical scroll.
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartX.current = e.touches[0].clientX;
+      touchStartY.current = e.touches[0].clientY;
+      isSwiping.current = false;
+      didSwipe.current = false;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (touchStartX.current === null || touchStartY.current === null) return;
+      const dx = Math.abs(e.touches[0].clientX - touchStartX.current);
+      const dy = Math.abs(e.touches[0].clientY - touchStartY.current);
+      if (dx > dy && dx > 10) {
+        isSwiping.current = true;
+        e.preventDefault(); // prevent scroll while swiping horizontally
+      }
+    };
+
+    const onTouchEnd = (e: TouchEvent) => {
+      if (touchStartX.current === null) return;
+      const dx = e.changedTouches[0].clientX - touchStartX.current;
+      const threshold = 30;
+      if (isSwiping.current && Math.abs(dx) > threshold) {
+        didSwipe.current = true;
+        if (dx < 0) setActiveIndex((i) => i + 1);
+        else setActiveIndex((i) => i - 1);
+      }
+      touchStartX.current = null;
+      touchStartY.current = null;
+      isSwiping.current = false;
+    };
+
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchmove", onTouchMove, { passive: false });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchmove", onTouchMove);
+      el.removeEventListener("touchend", onTouchEnd);
+    };
+  }, []);
+
+  // Desktop: pointer events for mouse drag
   const handlePointerDown = useCallback((e: React.PointerEvent) => {
-    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    if (e.pointerType === "touch") return; // handled by native touch above
     touchStartX.current = e.clientX;
     touchStartY.current = e.clientY;
     isSwiping.current = false;
@@ -209,18 +257,17 @@ function SideShiftCreators({
   }, []);
 
   const handlePointerMove = useCallback((e: React.PointerEvent) => {
+    if (e.pointerType === "touch") return;
     if (touchStartX.current === null || touchStartY.current === null) return;
     const dx = Math.abs(e.clientX - touchStartX.current);
     const dy = Math.abs(e.clientY - touchStartY.current);
     if (dx > dy && dx > 10) {
       isSwiping.current = true;
-      // Prevent vertical scroll while swiping horizontally
-      e.preventDefault();
     }
   }, []);
 
   const handlePointerUp = useCallback((e: React.PointerEvent) => {
-    (e.target as HTMLElement).releasePointerCapture(e.pointerId);
+    if (e.pointerType === "touch") return;
     if (touchStartX.current === null) return;
     const dx = e.clientX - touchStartX.current;
     const threshold = 30;
@@ -468,7 +515,6 @@ function SideShiftCreators({
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
-        style={{ touchAction: "pan-y pinch-zoom" }}
       >
         <div className="absolute inset-0 flex items-center justify-center">
           {extended.map((creator, index) => {
