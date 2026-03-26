@@ -39,7 +39,8 @@ function SideShiftCreators({
   const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
   const snapRef = useRef(false);
 
-  // ── Touch swipe support ──
+  // ── Refs ──
+  const carouselRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
   const isSwiping = useRef(false);
@@ -103,25 +104,84 @@ function SideShiftCreators({
     [autoplayVideos, playingVideoId],
   );
 
-  // ── Autoplay the active (center) video ──
+  // ── Mute/unmute ──
+  // Start muted so autoplay works, then unmute on first user interaction
+  const [isMuted, setIsMuted] = useState(true);
+
   useEffect(() => {
-    if (autoplayVideos) return;
+    const unmute = () => {
+      setIsMuted(false);
+      window.removeEventListener("click", unmute);
+      window.removeEventListener("touchstart", unmute);
+      window.removeEventListener("pointerdown", unmute);
+    };
+    window.addEventListener("click", unmute, { once: true });
+    window.addEventListener("touchstart", unmute, { once: true });
+    window.addEventListener("pointerdown", unmute, { once: true });
+    return () => {
+      window.removeEventListener("click", unmute);
+      window.removeEventListener("touchstart", unmute);
+      window.removeEventListener("pointerdown", unmute);
+    };
+  }, []);
+
+  // Sync muted state to all video elements
+  useEffect(() => {
+    videoRefs.current.forEach((video) => {
+      video.muted = isMuted;
+    });
+  }, [isMuted]);
+
+  // ── Autoplay the active (center) video when index changes ──
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    if (autoplayVideos || !isInView) return;
     const activeCreator = extended[activeIndex];
     if (!activeCreator) return;
 
-    // Pause previous video
+    // Pause previous video when swiping to a different card
     if (playingVideoId !== null && playingVideoId !== activeCreator.id) {
       const prevVideo = videoRefs.current.get(playingVideoId);
       if (prevVideo) prevVideo.pause();
     }
 
-    // Play the active video
-    const video = videoRefs.current.get(activeCreator.id);
-    if (video) {
-      video.play().catch(() => {});
+    // Auto-play the newly active card's video
+    const activeVideo = videoRefs.current.get(activeCreator.id);
+    if (activeVideo) {
+      activeVideo.play().catch(() => {});
       setPlayingVideoId(activeCreator.id);
     }
-  }, [activeIndex]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [activeIndex, isInView]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // ── Start/stop playback when section scrolls in/out of view ──
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el || autoplayVideos) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          // Auto-play the active card's video when section comes into view
+          const activeCreator = extended[activeIndex];
+          if (activeCreator) {
+            const activeVideo = videoRefs.current.get(activeCreator.id);
+            if (activeVideo) {
+              activeVideo.play().catch(() => {});
+              setPlayingVideoId(activeCreator.id);
+            }
+          }
+        } else {
+          // Pause ALL videos when scrolled away
+          videoRefs.current.forEach((video) => video.pause());
+          setPlayingVideoId(null);
+        }
+      },
+      { threshold: 0.2 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [autoplayVideos]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Close dropdown on outside click ──
   useEffect(() => {
@@ -138,69 +198,52 @@ function SideShiftCreators({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [dropdownOpen]);
 
-  // ── Touch swipe via overlay ref (passive: false to allow preventDefault) ──
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const touchOverlayRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = touchOverlayRef.current;
-    if (!el) return;
-
-    const onTouchStart = (e: TouchEvent) => {
-      touchStartX.current = e.touches[0].clientX;
-      touchStartY.current = e.touches[0].clientY;
-      isSwiping.current = false;
-      didSwipe.current = false;
-    };
-
-    const onTouchMove = (e: TouchEvent) => {
-      if (touchStartX.current === null || touchStartY.current === null) return;
-      const dx = Math.abs(e.touches[0].clientX - touchStartX.current);
-      const dy = Math.abs(e.touches[0].clientY - touchStartY.current);
-      if (dx > dy && dx > 10) {
-        isSwiping.current = true;
-        e.preventDefault();
-      }
-    };
-
-    const onTouchEnd = (e: TouchEvent) => {
-      if (touchStartX.current === null) return;
-      const dx = e.changedTouches[0].clientX - touchStartX.current;
-      const threshold = 30;
-      if (isSwiping.current && Math.abs(dx) > threshold) {
-        didSwipe.current = true;
-        if (dx < 0) setActiveIndex((i) => i + 1);
-        else setActiveIndex((i) => i - 1);
-      } else if (!isSwiping.current) {
-        // It was a tap, not a swipe — let it pass through by simulating click
-        const target = document.elementFromPoint(
-          e.changedTouches[0].clientX,
-          e.changedTouches[0].clientY,
-        );
-        if (target) (target as HTMLElement).click();
-      }
-      touchStartX.current = null;
-      touchStartY.current = null;
-      isSwiping.current = false;
-    };
-
-    el.addEventListener("touchstart", onTouchStart, { passive: true });
-    el.addEventListener("touchmove", onTouchMove, { passive: false });
-    el.addEventListener("touchend", onTouchEnd, { passive: true });
-    return () => {
-      el.removeEventListener("touchstart", onTouchStart);
-      el.removeEventListener("touchmove", onTouchMove);
-      el.removeEventListener("touchend", onTouchEnd);
-    };
+  // ── Pointer-based swipe (works on real mobile + DevTools simulation) ──
+  const handlePointerDown = useCallback((e: React.PointerEvent) => {
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    touchStartX.current = e.clientX;
+    touchStartY.current = e.clientY;
+    isSwiping.current = false;
+    didSwipe.current = false;
   }, []);
 
-  const handleCardClick = useCallback((index: number) => {
+  const handlePointerMove = useCallback((e: React.PointerEvent) => {
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    const dx = Math.abs(e.clientX - touchStartX.current);
+    const dy = Math.abs(e.clientY - touchStartY.current);
+    if (dx > dy && dx > 10) {
+      isSwiping.current = true;
+      // Prevent vertical scroll while swiping horizontally
+      e.preventDefault();
+    }
+  }, []);
+
+  const handlePointerUp = useCallback((e: React.PointerEvent) => {
+    (e.target as HTMLElement).releasePointerCapture(e.pointerId);
+    if (touchStartX.current === null) return;
+    const dx = e.clientX - touchStartX.current;
+    const threshold = 30;
+    if (isSwiping.current && Math.abs(dx) > threshold) {
+      didSwipe.current = true;
+      if (dx < 0) setActiveIndex((i) => i + 1);
+      else setActiveIndex((i) => i - 1);
+    }
+    touchStartX.current = null;
+    touchStartY.current = null;
+    isSwiping.current = false;
+  }, []);
+
+  const handleCardClick = useCallback((index: number, creatorId: number, isActive: boolean) => {
     if (didSwipe.current) {
       didSwipe.current = false;
       return;
     }
-    setActiveIndex(index);
-  }, []);
+    if (isActive && !autoplayVideos) {
+      handleVideoToggle(creatorId);
+    } else {
+      setActiveIndex(index);
+    }
+  }, [autoplayVideos, handleVideoToggle]);
 
   const showCategoryBadge = !platformMode || !!badgeLabel;
 
@@ -433,13 +476,11 @@ function SideShiftCreators({
       <div
         ref={carouselRef}
         className="relative mt-10 h-[520px] overflow-hidden md:mt-14 md:h-[580px]"
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        style={{ touchAction: "pan-y pinch-zoom" }}
       >
-        {/* Invisible touch overlay — captures swipes on mobile, passes taps through */}
-        <div
-          ref={touchOverlayRef}
-          className="absolute inset-0 z-50 md:hidden"
-          style={{ touchAction: "none" }}
-        />
         <div className="absolute inset-0 flex items-center justify-center">
           {extended.map((creator, index) => {
             const offset = index - activeIndex;
@@ -465,7 +506,7 @@ function SideShiftCreators({
             return (
               <div
                 key={`${creator.id}-${index}`}
-                onClick={() => handleCardClick(index)}
+                onClick={() => handleCardClick(index, creator.id, isActive)}
                 className="absolute flex h-full cursor-pointer items-center justify-center"
                 style={{
                   width: cardWidth,
@@ -502,43 +543,43 @@ function SideShiftCreators({
                       src={creator.video}
                       className="absolute inset-0 h-full w-full object-cover"
                       style={{ aspectRatio: "8 / 16" }}
-                      muted
+                      muted={isMuted}
                       loop
                       playsInline
                       autoPlay={autoplayVideos}
                       preload="auto"
-                      onClick={(e) => {
-                        if (!autoplayVideos) {
-                          e.stopPropagation();
-                          setActiveIndex(index);
-                          handleVideoToggle(creator.id);
-                        }
-                      }}
                     />
 
-                    {!autoplayVideos && playingVideoId !== creator.id && (
-                      <div
-                        className="absolute inset-0 z-15 flex items-center justify-center"
+                    {/* Mute toggle (top-right) — only on active card when playing */}
+                    {isActive && playingVideoId === creator.id && (
+                      <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          setActiveIndex(index);
-                          handleVideoToggle(creator.id);
+                          setIsMuted((m) => !m);
                         }}
+                        className="absolute top-3 right-5 z-30 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-white/20 backdrop-blur-md border border-white/30"
+                        aria-label={isMuted ? "Unmute" : "Mute"}
                       >
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm">
-                          <svg
-                            width="18"
-                            height="20"
-                            viewBox="0 0 18 20"
-                            fill="none"
-                          >
-                            <path
-                              d="M17 10L1 19V1L17 10Z"
-                              fill="#202020"
-                              stroke="#202020"
-                              strokeWidth="1.5"
-                              strokeLinejoin="round"
-                            />
+                        {isMuted ? (
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                            <line x1="23" y1="9" x2="17" y2="15" />
+                            <line x1="17" y1="9" x2="23" y2="15" />
+                          </svg>
+                        ) : (
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                          </svg>
+                        )}
+                      </button>
+                    )}
+
+                    {isActive && !autoplayVideos && playingVideoId !== creator.id && (
+                      <div className="absolute inset-0 z-15 flex items-center justify-center pointer-events-none">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black/20 backdrop-blur-md border border-white/20 shadow-lg">
+                          <svg width="16" height="18" viewBox="0 0 18 20" fill="none" className="ml-0.5">
+                            <path d="M17 10L1 19V1L17 10Z" fill="white" fillOpacity="0.9" />
                           </svg>
                         </div>
                       </div>
