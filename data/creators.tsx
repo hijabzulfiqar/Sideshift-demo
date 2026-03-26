@@ -10,127 +10,247 @@ export const dummyVideos = [
 
 export const videosByCategory: Record<string, string[]> = {
   health: [
-    "https://embed-ssl.wistia.com/deliveries/ce227785c20ef3b1c6812f4b9f3fe6ecdec550a1.bin",
-    "https://embed-ssl.wistia.com/deliveries/428b2eac082e732324cd816ece6f4858f25a1d5c.bin",
-    "https://embed-ssl.wistia.com/deliveries/d58d5845e4d42d00296ad0c312c02fa784aeab0b.bin",
-    "https://embed-ssl.wistia.com/deliveries/2159c409213a2df148755d3f363fa5b1711a66bc.bin",
-    "https://embed-ssl.wistia.com/deliveries/747baf31a63dce31c304fefafa0e84b3d99ca88d.bin",
-    "https://embed-ssl.wistia.com/deliveries/6e4d505f4198edf1684301165225cb03c82e9a74.bin",
+    "https://embed-ssl.wistia.com/deliveries/9cf1628d71674e17cfe0b20d3fbfac68.bin",
+    "https://embed-ssl.wistia.com/deliveries/24ca2e670fddcf357480458d191c91d7.bin",
+    "https://embed-ssl.wistia.com/deliveries/0074fb6e42aa8d019ee7f8be5700d6a9.bin",
+    "https://embed-ssl.wistia.com/deliveries/32a131c08a86fc1b55389b75008aecec.bin",
+    "https://embed-ssl.wistia.com/deliveries/d725b1ff20122f4a8195cb9475b12de5a4ee0a43.bin",
+    "https://embed-ssl.wistia.com/deliveries/a1bc3c1b91c297be5a21b4b654b0ce7b.bin",
+    "https://embed-ssl.wistia.com/deliveries/062707f23751f62e2ddc9dcf61de6f68.bin",
   ],
+  // Ayo, Max, Angela, Madison, Serena, Renae, Carly
+  social: [
+    "https://embed-ssl.wistia.com/deliveries/5bea09047459deb9fd7f432f70b1d4af764d63d6.bin",
+    "https://embed-ssl.wistia.com/deliveries/1cd6b153fdc737d30f171a0f1c599ca26ce87506.bin",
+    "https://embed-ssl.wistia.com/deliveries/64d9751b2b39ba062ae0d46c7cce5c0c389ab26e.bin",
+    "https://embed-ssl.wistia.com/deliveries/6c14963bb6dfde6bdea93d471db5d141f61f475d.bin",
+    "https://embed-ssl.wistia.com/deliveries/33c28bdd782c63f211463ae74a46cb1660fe0b18.bin",
+    "https://embed-ssl.wistia.com/deliveries/f3cf458fd81d2f278d0069e60b1f45a20c3eb676.bin",
+    "https://embed-ssl.wistia.com/deliveries/a53fea947d008f58989e3c9d81e25a27d1e14eb4.bin",
+  ],
+  // Ray, Max, Abby, Vika, Dre, Marcela, Kat (Kat has no video — will cycle)
+  cpg: [
+    "https://embed-ssl.wistia.com/deliveries/d17a0b74fa66395f948cd0a6961c3f90760d2db1.bin",
+    "https://embed-ssl.wistia.com/deliveries/e35d3aee91a15b280e0dc61a4da4b46fcca61f72.bin",
+    "https://embed-ssl.wistia.com/deliveries/8ba906456d0e8c07cac4d844b0fb4b8e53e88d90.bin",
+    "https://embed-ssl.wistia.com/deliveries/a2c4edc7880dcb59bf497eb5e74c09fef3788a50.bin",
+    "https://embed-ssl.wistia.com/deliveries/3117b82506acec36eb1761e025b3c14011b151fc.bin",
+    "https://embed-ssl.wistia.com/deliveries/447db535b5dd48c1682608bcf5b4018a48d114fc.bin",
+  ],
+  // Jess, Alina, Meg, Marissa, Trinity, Sara, Austin
   fashion: [
-    "https://embed-ssl.wistia.com/deliveries/306ea097ea2fdaa96e76d48eebfbad4cabfcd1ca.bin",
-    "https://embed-ssl.wistia.com/deliveries/87fdaa4163db9e7e69f20a9154bf456d7373dc22.bin",
-    "https://embed-ssl.wistia.com/deliveries/6426cbf578c4feb1d6f0d73bb013ef635261e3a6.bin",
-    "https://embed-ssl.wistia.com/deliveries/cf228f37d89d424b5f2f88d9964200941ee5d2ec.bin",
-    "https://embed-ssl.wistia.com/deliveries/e15f6b80bf4de194ba9626181266d9f7fb8193b3.bin",
-    "https://embed-ssl.wistia.com/deliveries/a7884c0e7842a2b1a4c8ab6a9d5c30fe7dc14885.bin",
-    "https://embed-ssl.wistia.com/deliveries/56af918a69fd7e64a7cb0bc10e8ae54987601236.bin",
+    "https://embed-ssl.wistia.com/deliveries/2fbba00f7b4a6e454d9b906e4feab3a58578d022.bin",
+    "https://embed-ssl.wistia.com/deliveries/9d251315b70a35f5916d6f98f6d4232997f61ba8.bin",
+    "https://embed-ssl.wistia.com/deliveries/9482fd1430020f5a57f98dbe5eb1e399a80cd4f1.bin",
+    "https://embed-ssl.wistia.com/deliveries/1ff985b9f3c41a99e324390bb594567f282b0fd9.bin",
+    "https://embed-ssl.wistia.com/deliveries/3aa409af903c2e18a2b15b6bc9d2ec9334555d07.bin",
+    "https://embed-ssl.wistia.com/deliveries/63b50ba69b6ea2481c098455006d06a8225c2383.bin",
+    "https://embed-ssl.wistia.com/deliveries/e5887cbed750da6d5b3f58a0c13ec0708dd9a764.bin",
   ],
-  food: [
-    "https://embed-ssl.wistia.com/deliveries/8da790ed4ef31f55484f87a60b6ea1a11559431a.bin",
-    "https://embed-ssl.wistia.com/deliveries/01f367a620ad3a7df55715b7d25a1349c43c317f.bin",
-  ],
+  // Colin, Ayo, Mackenzie, Paige, Matt, Maxine
   tech: [
-    "https://embed-ssl.wistia.com/deliveries/89eda5298447436e00a697bebb3aa474e84b3c13.bin",
-    "https://embed-ssl.wistia.com/deliveries/b93e6922d3a1a7affa36487ec8bce45f0ec70698.bin",
+    "https://embed-ssl.wistia.com/deliveries/93e764cc4358f4f7ac6a591ce9a94719036f1fa1.bin",
+    "https://embed-ssl.wistia.com/deliveries/c96acf775791d046527caa0fd27ce0272d94a782.bin",
+    "https://embed-ssl.wistia.com/deliveries/80cc9c9a0a43ae323a66ec0cc124c0b51be3f568.bin",
+    "https://embed-ssl.wistia.com/deliveries/5ee6e87cf4fc4ee78b946d592d60a7fbce01521e.bin",
+    "https://embed-ssl.wistia.com/deliveries/aab57ddf37e1e2605fa77e58337e9c7baece5041.bin",
+    "https://embed-ssl.wistia.com/deliveries/31e7fddef6a1de406487c1ecef14539a63a9af84.bin",
   ],
-  pets: [
-    "https://embed-ssl.wistia.com/deliveries/438c2802fbb48485446f3b4591c831b870145c86.bin",
-    "https://embed-ssl.wistia.com/deliveries/bd3168831ebb5facede34734fd9004588342ce81.bin",
-    "https://embed-ssl.wistia.com/deliveries/86ab9664c3858e494b4712d8abb88fb06c110055.bin",
-    "https://embed-ssl.wistia.com/deliveries/22d5c48567dca00a34907ed097708126cbf31012.bin",
-  ],
-  relationship: [
-    "https://embed-ssl.wistia.com/deliveries/03444ab2207cf1c92433df2e883f0be577271f4d.bin",
-    "https://embed-ssl.wistia.com/deliveries/fd331b72daa7beb9dadc0b7ec89cf7040cf63b3e.bin",
-    "https://embed-ssl.wistia.com/deliveries/80eb491a25585fee63065d7899fe4935a300ec6f.bin",
-    "https://embed-ssl.wistia.com/deliveries/3be6fe01bc0746adf057ff9d8f82a0ebbdd1a09e.bin",
-    "https://embed-ssl.wistia.com/deliveries/d7258e3548f22a42712adab64c1f291ad3ab14f6.bin",
-    "https://embed-ssl.wistia.com/deliveries/c8d9e9f4f1384fae75921437428d93c65eebb861.bin",
-    "https://embed-ssl.wistia.com/deliveries/2639707165867fde70a964bc1f6f1aa07a48e301.bin",
-    "https://embed-ssl.wistia.com/deliveries/261d608eb051cceb969c0deb8f08fa1900f170b4.bin",
-    "https://embed-ssl.wistia.com/deliveries/7886f989af4ff0e2c8f6b5c376f1be6f43c5c669.bin",
-    "https://embed-ssl.wistia.com/deliveries/2e8362a75412960ffc33b643cd31c262fbb549bb.bin",
-    "https://embed-ssl.wistia.com/deliveries/308d0a241f2f82f72a551858d607690aa3fb924a.bin",
-    "https://embed-ssl.wistia.com/deliveries/221f66593294386ca7394b37636a7b020859351b.bin",
-    "https://embed-ssl.wistia.com/deliveries/d04b0acd59cf825f0775960694639108f46c6b56.bin",
-  ],
-  creative: [
-    "https://embed-ssl.wistia.com/deliveries/3e5fb44c78591f8712b12aa3cecb5e3122ea0dca.bin",
-    "https://embed-ssl.wistia.com/deliveries/4429de48e7fabf9f1c5e2a90b2bcbbb1f61b34ae.bin",
-    "https://embed-ssl.wistia.com/deliveries/34481251b18afb87e8eda6479b21b4692d9a2ceb.bin",
-    "https://embed-ssl.wistia.com/deliveries/1aaa0500ded246150733524011195f49734214d0.bin",
-    "https://embed-ssl.wistia.com/deliveries/f5ba8cf4791cd2555a522b8b6f5f803fb9e6468b.bin",
-    "https://embed-ssl.wistia.com/deliveries/7b510012276423ccf323bf33add46629aca46372.bin",
-    "https://embed-ssl.wistia.com/deliveries/2703b6eaf114e8e56959d8552c41653f02e00ef4.bin",
-    "https://embed-ssl.wistia.com/deliveries/75d7f7cb12c8afffd3e2ffddf8f2d55f07a6de13.bin",
-  ],
-  entertainment: [
-    "https://embed-ssl.wistia.com/deliveries/55aeca5df32552306ea9b682522c9c78f6bd43d3.bin",
-    "https://embed-ssl.wistia.com/deliveries/6061573a3d9ddf81871459531e88fc3a7d602fa0.bin",
-    "https://embed-ssl.wistia.com/deliveries/4eb380d391179e237df8c4e8d962d6b8436d661c.bin",
-    "https://embed-ssl.wistia.com/deliveries/1e5d522a4b14ca3f712814c2b82f405f55077565.bin",
-  ],
+  // Cassandra, Monte, Justin, Emmy, Grace
   finance: [
-    "https://embed-ssl.wistia.com/deliveries/359d3088032336cd044f8c8246e21f8c92dc2e49.bin",
-    "https://embed-ssl.wistia.com/deliveries/83dfb89e7284032ddef3da4a1049ae0fe8838575.bin",
+    "https://embed-ssl.wistia.com/deliveries/5fdfe27941dd965a4f8c5f6fab7038bb863eefa8.bin",
+    "https://embed-ssl.wistia.com/deliveries/ca4ad46e76966f491b345833398218437e4809a1.bin",
+    "https://embed-ssl.wistia.com/deliveries/bb38de921ca9544936ab61c60fe9e53f2a2d4aa8.bin",
+    "https://embed-ssl.wistia.com/deliveries/a68891436d1137560846cb445acbdf512507edfe.bin",
+    "https://embed-ssl.wistia.com/deliveries/ddbcf47917f3c1cc283fcb3fe6a838584e9aaa86.bin",
   ],
+  // Nina, Jenny, Frank, Jacob, Saumya, Gino
+  entertainment: [
+    "https://embed-ssl.wistia.com/deliveries/e41e0b3c778d1387317a13e127cb50ea745c1bd7.bin",
+    "https://embed-ssl.wistia.com/deliveries/4551423cb07185a61dd4ec61ef144aabc06e4a64.bin",
+    "https://embed-ssl.wistia.com/deliveries/ab747d5792f66348fd2b5f9e410f88449d22ef73.bin",
+    "https://embed-ssl.wistia.com/deliveries/3b6032a88efa37bb7a3ff5ade61aed3da170ea0f.bin",
+    "https://embed-ssl.wistia.com/deliveries/886c07a0a36a95b3b2e97f2e3f4b5388c5b0bed9.bin",
+    "https://embed-ssl.wistia.com/deliveries/4c0b69b90a25204f04ace08245576c195e5da690.bin",
+  ],
+  // Jordynn, Isaac, Hannah, Trey, Kaiya, Mykaila, Eric
   gaming: [
-    "https://embed-ssl.wistia.com/deliveries/c91fd99e8fa01acd1069d4aea6ae1c8dd9445ded.bin",
-    "https://embed-ssl.wistia.com/deliveries/a80b2cab13553f4c3c54aabd4c2c43db71630888.bin",
-    "https://embed-ssl.wistia.com/deliveries/eaff9ee5ea1c2367d84081fd27d131d496f4ce42.bin",
+    "https://embed-ssl.wistia.com/deliveries/5dc5ec46f1e6a6e23aa7537a407e6b36ced7f673.bin",
+    "https://embed-ssl.wistia.com/deliveries/14d231d8984ce4693c20170ecdc57798e4f7b86e.bin",
+    "https://embed-ssl.wistia.com/deliveries/48d3a0c4e1c43ed2344cb2e45c28002d8261687f.bin",
+    "https://embed-ssl.wistia.com/deliveries/eeee78fec8dde2b906be33b9e322dc8458796d17.bin",
+    "https://embed-ssl.wistia.com/deliveries/86f74639530aade997f0317c8fc171f42839e86f.bin",
+    "https://embed-ssl.wistia.com/deliveries/d5f35100157477dcaf20c3c6d820c5b71300503c.bin",
+    "https://embed-ssl.wistia.com/deliveries/9236a37d89366b50774fa0db82445bedf28fab87.bin",
   ],
+  // Brianna, Ali, LourDrick, Emma, Joe, Caitlin, Gray
   education: [
-    "https://embed-ssl.wistia.com/deliveries/19be6922406879a02f7e8281b74d6ffab32f05de.bin",
-    "https://embed-ssl.wistia.com/deliveries/0787daf59d7e06761b2dc9a09e0a910ff7aa7af3.bin",
-    "https://embed-ssl.wistia.com/deliveries/68a504980f61ed97baa757683d2cd239c59f6d6e.bin",
-    "https://embed-ssl.wistia.com/deliveries/e2be1fb2fd014581b64b2dcfd8e3369ebd76c283.bin",
-    "https://embed-ssl.wistia.com/deliveries/89e5cc11e1183b9c3bed4d2fe3f1b462dc2f1baf.bin",
-    "https://embed-ssl.wistia.com/deliveries/1004c99cab20f774bd6efce94a37f1b62256dd7a.bin",
-    "https://embed-ssl.wistia.com/deliveries/567c120a9a7650a3180c009777adc71e5591965c.bin",
-    "https://embed-ssl.wistia.com/deliveries/630c76d82a523b546f0506aee4032acfa227c086.bin",
-    "https://embed-ssl.wistia.com/deliveries/977d29ec70b03824f8c1146d58c4abd811fb1239.bin",
-    "https://embed-ssl.wistia.com/deliveries/32fa92f0a37bd6f7fc773e69717be03149fb5380.bin",
-    "https://embed-ssl.wistia.com/deliveries/eb1c92bfcf1518595f446d6f9d99d6dfedda3d56.bin",
-    "https://embed-ssl.wistia.com/deliveries/20df0f4ff0bb46ec0e231a1fa1a83cf612ed4866.bin",
-    "https://embed-ssl.wistia.com/deliveries/d0390f6378c248d75e84dfd3c0243e5fb5d4fcca.bin",
-    "https://embed-ssl.wistia.com/deliveries/53d3b2cde8875f4749f1debd0f4fb3d0a4b58b2d.bin",
+    "https://embed-ssl.wistia.com/deliveries/4f91c1f5442305dd10e9dd301215e41f.bin",
+    "https://embed-ssl.wistia.com/deliveries/d73bdaf7d3b35fc483fa49092b05fa12c4adf883.bin",
+    "https://embed-ssl.wistia.com/deliveries/423fd867152b55997bf266042156a29d46e28c3b.bin",
+    "https://embed-ssl.wistia.com/deliveries/055b54bbf015d142a58192bd1ca63a4e2711f6a0.bin",
+    "https://embed-ssl.wistia.com/deliveries/74a92f8aa53b5220d0b21001a87db8bcc4ab0339.bin",
+    "https://embed-ssl.wistia.com/deliveries/efdb84a97368d1222eb3844359f06c3cb762b387.bin",
+    "https://embed-ssl.wistia.com/deliveries/f08050925fc785af03843808be6b9ed064daa1d5.bin",
+  ],
+  // Sarah, Vivi, Hayden, Quis, Gyasi, Maya
+  photo: [
+    "https://embed-ssl.wistia.com/deliveries/34f74124dcd795cadedb42dceb9b582766919255.bin",
+    "https://embed-ssl.wistia.com/deliveries/9fdc8c08475de27e48252a4338673d0b2ebf705e.bin",
+    "https://embed-ssl.wistia.com/deliveries/0aea2999f369ed5a65d18cc34fad402f.bin",
+    "https://embed-ssl.wistia.com/deliveries/12b0c9301dfce8ff738a8931f7795e4b1dc84345.bin",
+    "https://embed-ssl.wistia.com/deliveries/996ee9d88bf033073590e5593f9860c4071c510c.bin",
+    "https://embed-ssl.wistia.com/deliveries/bf59a20299194d5f97e36045d8f8911d.bin",
+  ],
+  // Lydia, Nessa, Shelby, Alyssa, Victor, Tatsuya, Larine
+  travel: [
+    "https://embed-ssl.wistia.com/deliveries/96de35e1438f7722952fc20d2439372095715517.bin",
+    "https://embed-ssl.wistia.com/deliveries/b9f5f2e93f92a8b51bad2a04740cde92c22607c3.bin",
+    "https://embed-ssl.wistia.com/deliveries/9ebdcfda601bb11668d915fbb85b99f06792c727.bin",
+    "https://embed-ssl.wistia.com/deliveries/9fba82f80ce5be8a242307cb32e1609d859a4cde.bin",
+    "https://embed-ssl.wistia.com/deliveries/e565d0b126cfb8d7b3bd4f9c1f523000364a8f31.bin",
+    "https://embed-ssl.wistia.com/deliveries/ad46d6a624c3a9b29e4e86a1ed51e32e.bin",
+    "https://embed-ssl.wistia.com/deliveries/5bb3e0fa0b23286b0de58a9e681945ee7dade3a7.bin",
   ],
 };
 
 export const categories = [
   { id: "health", label: "Health & Wellness" },
-  { id: "relationship", label: "Relationship" },
+  { id: "social", label: "Social Networks & Relationship" },
+  { id: "cpg", label: "CPG" },
   { id: "fashion", label: "Apparel & Fashion" },
-  { id: "apps", label: "Apps & Digital Services" },
-  { id: "food", label: "Food & Beverage" },
-  { id: "pets", label: "Pets" },
-  { id: "family", label: "Children & Family" },
-  { id: "tech", label: "Technology & Gadgets" },
-  { id: "creative", label: "Creative Tool" },
-  { id: "entertainment", label: "Entertainment" },
+  { id: "tech", label: "Tech & AI" },
   { id: "finance", label: "Finance" },
+  { id: "entertainment", label: "Entertainment & Music" },
   { id: "gaming", label: "Gaming" },
-  { id: "education", label: "Education" },
+  { id: "education", label: "Education & Language" },
+  { id: "photo", label: "Photo & Video Editing" },
+  { id: "travel", label: "Travel" },
 ];
 
 export const namesByCat: Record<string, string[]> = {
-  health: ["Natalie", "Marcus", "Sophia", "Rosh", "Alexis", "Taylor", "Jamie"],
-  relationship: ["Jordan", "Emily", "Ava", "Liam", "Chloe", "Megan", "Priya"],
-  fashion: ["Mia", "Noah", "Zara", "Harper", "Ella", "Diego", "Suki"],
-  apps: ["Jake", "Lily", "Oscar", "Isla", "Leo", "Arun", "Casey"],
-  food: ["Grace", "Ben", "Olive", "Sam", "Ruby", "Marco", "Nina"],
-  pets: ["Max", "Luna", "Finn", "Aria", "Kai", "Zoe", "Rex"],
-  family: ["Ivy", "Dylan", "Willow", "Ezra", "Nora", "Teri", "Shane"],
-  tech: ["Owen", "Hazel", "Asher", "Elena", "Felix", "Yuki", "Dana"],
-  creative: ["Stella", "Adam", "Cora", "Henry", "Iris", "Nico", "Faye"],
-  entertainment: ["Ravi", "Tessa", "Blake", "Sienna", "Jace", "Mina", "Cole"],
-  finance: ["Quinn", "Archer", "Leah", "Rohan", "Kira", "Ethan", "Nadia"],
-  gaming: ["Axel", "Zara", "Koda", "Nova", "Reese", "Yara", "Theo"],
-  education: ["Maya", "Derek", "Priti", "Lucas", "Sasha", "Omar", "Freya"],
+  health: ["Shelly", "Noah", "Calvin", "Abby", "Makena", "Bella", "Elle"],
+  social: ["Ayo", "Max", "Angela", "Madison", "Serena", "Renae", "Carly"],
+  cpg: ["Ray", "Max", "Abby", "Vika", "Dre", "Marcela"],
+  fashion: ["Jess", "Alina", "Meg", "Marissa", "Trinity", "Sara", "Austin"],
+  tech: ["Colin", "Ayo", "Mackenzie", "Paige", "Matt", "Maxine"],
+  finance: ["Cassandra", "Monte", "Justin", "Emmy", "Grace"],
+  entertainment: ["Nina", "Jenny", "Frank", "Jacob", "Saumya", "Gino"],
+  gaming: ["Jordynn", "Isaac", "Hannah", "Trey", "Kaiya", "Mykaila", "Eric"],
+  education: ["Brianna", "Ali", "LourDrick", "Emma", "Joe", "Caitlin", "Gray"],
+  photo: ["Sarah", "Vivi", "Hayden", "Quis", "Gyasi", "Maya"],
+  travel: ["Lydia", "Nessa", "Shelby", "Alyssa", "Victor", "Tatsuya", "Larine"],
 };
 
-export const ratingOptions = ["4.6", "4.7", "4.8", "4.9", "5.0", "5.0", "4.9"];
+export const ratingsByCat: Record<string, string[]> = {
+  health: ["5.0", "4.5", "5.0", "4.5", "5.0", "4.0", "4.5"],
+  social: ["4.5", "5.0", "4.0", "5.0", "4.5", "5.0", "4.5"],
+  cpg: ["5.0", "4.5", "4.5", "5.0", "4.0", "5.0"],
+  fashion: ["4.5", "5.0", "4.0", "4.5", "5.0", "4.5", "5.0"],
+  tech: ["5.0", "4.5", "5.0", "4.0", "4.5", "4.5"],
+  finance: ["4.0", "4.5", "5.0", "4.5", "5.0"],
+  entertainment: ["5.0", "4.5", "4.5", "5.0", "4.0", "5.0"],
+  gaming: ["4.5", "5.0", "4.5", "4.0", "5.0", "4.5", "5.0"],
+  education: ["5.0", "4.0", "4.5", "5.0", "4.5", "5.0", "4.5"],
+  photo: ["4.5", "5.0", "4.5", "5.0", "4.0", "4.5"],
+  travel: ["5.0", "4.5", "4.0", "4.5", "5.0", "4.5", "5.0"],
+};
+
+export const countriesByCat: Record<string, string[]> = {
+  health: [
+    "United States",
+    "United States",
+    "United States",
+    "Canada",
+    "United States",
+    "United States",
+    "United States",
+  ],
+  social: [
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+    "United Kingdom",
+    "Canada",
+    "United States",
+  ],
+  cpg: [
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+  ],
+  fashion: [
+    "United Kingdom",
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+    "Australia",
+  ],
+  tech: [
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+  ],
+  finance: [
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+  ],
+  entertainment: [
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+  ],
+  gaming: [
+    "Canada",
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+  ],
+  education: [
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+  ],
+  photo: [
+    "United States",
+    "United Kingdom",
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+  ],
+  travel: [
+    "United States",
+    "United States",
+    "United States",
+    "United States",
+    "United Kingdom",
+    "United States",
+    "United States",
+  ],
+};
 
 export const gradients = [
   "from-rose-300 via-pink-200 to-orange-200",
@@ -144,16 +264,16 @@ export const gradients = [
 
 export const industryFilters = [
   { label: "Health & Wellness", categoryId: "health" },
-  { label: "Relationship", categoryId: "relationship" },
+  { label: "Social Networks & Relationship", categoryId: "social" },
+  { label: "CPG", categoryId: "cpg" },
   { label: "Apparel & Fashion", categoryId: "fashion" },
-  { label: "Food & Beverage", categoryId: "food" },
-  { label: "Technology", categoryId: "tech" },
-  { label: "Creative Tool", categoryId: "creative" },
-  { label: "Entertainment", categoryId: "entertainment" },
+  { label: "Tech & AI", categoryId: "tech" },
   { label: "Finance", categoryId: "finance" },
+  { label: "Entertainment & Music", categoryId: "entertainment" },
   { label: "Gaming", categoryId: "gaming" },
-  { label: "Education", categoryId: "education" },
-  { label: "Pets", categoryId: "pets" },
+  { label: "Education & Language", categoryId: "education" },
+  { label: "Photo & Video Editing", categoryId: "photo" },
+  { label: "Travel", categoryId: "travel" },
 ];
 
 function USFlag() {
@@ -405,68 +525,124 @@ export const countries = [
 
 export const categoryIcons: Record<string, React.ReactNode> = {
   health: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19" fill="currentColor">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="19"
+      viewBox="0 0 20 19"
+      fill="currentColor"
+    >
       <path d="M9.266 18.052c-1.07-.199-2.108-.542-3.117-1.031-1.008-.49-1.906-1.169-2.693-2.04-.786-.87-1.42-1.948-1.902-3.231C1.074 10.467.833 8.939.833 7.167V6.983c0-.214.069-.39.206-.527.138-.137.314-.206.528-.206h.183c.779 0 1.581.1 2.406.298.825.199 1.597.496 2.315.894.168-1.131.504-2.292 1.008-3.484.504-1.191 1.108-2.268 1.81-3.231C9.473.467 9.71.338 10 .338c.29 0 .527.13.71.39.703.962 1.306 2.04 1.81 3.231.504 1.191.841 2.353 1.009 3.484.718-.398 1.49-.696 2.314-.894.825-.199 1.627-.298 2.407-.298h.091c.23 0 .424.08.585.24.16.161.24.356.24.585v.091c0 1.772-.24 3.3-.722 4.583-.481 1.283-1.115 2.361-1.902 3.231-.787.871-1.684 1.551-2.693 2.04-1.008.49-2.047.833-3.117 1.031-.198.031-.443.046-.733.046-.29 0-.535-.015-.733-.046Zm.687-1.765c-.168-2.52-.928-4.434-2.28-5.74-1.352-1.306-3.006-2.112-4.961-2.418-.031 0-.031 0 0 0 .168 2.582.951 4.522 2.349 5.821 1.398 1.298 3.029 2.078 4.892 2.337.031.015.031.02 0 .012-.03-.008-.03-.012 0-.012ZM8.212 8.496c.306.26.627.569.963.928.336.36.611.707.825 1.043.229-.336.508-.687.836-1.043.329-.36.646-.669.951-.928-.03-.87-.202-1.78-.516-2.727-.313-.947-.737-1.872-1.271-2.773-.535.901-.959 1.826-1.272 2.773-.313.948-.485 1.857-.516 2.727Zm2.796 3.896c.183.489.34 1.023.47 1.604.13.58.233 1.207.31 1.879.55-.184 1.13-.459 1.742-.825.611-.367 1.176-.855 1.696-1.467.52-.611.97-1.363 1.352-2.257.382-.894.619-1.959.71-3.197 0-.03 0-.03 0 0-1.436.214-2.696.691-3.781 1.432-1.085.741-1.917 1.684-2.498 2.83Z" />
     </svg>
   ),
-  relationship: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+  social: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
+      <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+    </svg>
+  ),
+  cpg: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
+      <path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6-2c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm6 16H6V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h4v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z" />
     </svg>
   ),
   fashion: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="currentColor">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 22 22"
+      fill="currentColor"
+    >
       <path d="M5.5 10.038 4.584 10.54c-.214.123-.443.153-.688.092a.916.916 0 0 1-.55-.412L1.513 7.013a.916.916 0 0 1-.092-.688c.061-.244.199-.428.413-.55L7.104 2.75h1.604c.138 0 .249.042.333.126a.453.453 0 0 1 .126.332v.459c0 .504.18.935.539 1.294.359.36.79.539 1.294.539.504 0 .936-.18 1.295-.539.36-.359.539-.79.539-1.294v-.459a.453.453 0 0 1 .126-.332.453.453 0 0 1 .333-.126h1.604l5.27 3.025c.214.122.352.306.413.55.06.244.031.473-.092.688l-1.833 3.208a.916.916 0 0 1-.538.401.925.925 0 0 1-.7-.103l-.917-.46v8.274c0 .26-.088.477-.264.653a.888.888 0 0 1-.652.264H6.417a.888.888 0 0 1-.653-.264.888.888 0 0 1-.264-.653v-8.296Zm1.833-3.07v10.449h7.334V6.967l2.841 1.558.963-1.604-3.942-2.292a4.104 4.104 0 0 1-1.295 1.937A3.664 3.664 0 0 1 11 7.333a3.664 3.664 0 0 1-2.234-.767 4.104 4.104 0 0 1-1.295-1.937l-3.942 2.292.963 1.604 2.841-1.558Z" />
     </svg>
   ),
-  apps: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="currentColor">
-      <path d="M6.416 21.083c-.504 0-.935-.18-1.294-.538a1.763 1.763 0 0 1-.539-1.295V2.75c0-.504.18-.936.539-1.295a1.763 1.763 0 0 1 1.294-.538h9.167c.504 0 .936.18 1.295.538.359.36.538.791.538 1.295v16.5c0 .504-.179.936-.538 1.295-.36.359-.791.538-1.295.538H6.416Zm0-4.583v2.75h9.167V16.5H6.416Zm4.584 2.292c.26 0 .477-.088.653-.264a.888.888 0 0 0 .264-.653.888.888 0 0 0-.264-.653.888.888 0 0 0-.653-.264.888.888 0 0 0-.653.264.888.888 0 0 0-.264.653c0 .26.088.477.264.653a.888.888 0 0 0 .653.264ZM6.416 14.667h9.167V5.5H6.416v9.167Zm0-11V2.75h9.167v.917H6.416Z" />
-    </svg>
-  ),
-  food: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="currentColor">
-      <path d="M3.666 19.25c-.504 0-.936-.18-1.295-.538a1.763 1.763 0 0 1-.538-1.295v-1.834c0-.26.088-.477.263-.653a.888.888 0 0 1 .654-.263h16.5c.26 0 .477.088.653.263a.888.888 0 0 1 .264.653v1.834c0 .504-.18.935-.539 1.295a1.763 1.763 0 0 1-1.295.538H3.666Zm0-2.75v.917h14.667V16.5H3.666ZM11 12.375c-.55 0-.986.153-1.307.458-.321.306-.909.459-1.764.459-.856 0-1.436-.153-1.742-.459-.305-.305-.733-.458-1.284-.458-.428 0-.775.103-1.042.31-.268.205-.631.37-1.089.492a.72.72 0 0 1-.653-.15.732.732 0 0 1-.286-.652c0-.26.088-.485.263-.676.176-.19.386-.348.631-.47.26-.137.542-.286.848-.447.305-.16.749-.24 1.329-.24.856 0 1.436.153 1.742.458.305.306.733.459 1.283.459s.986-.153 1.307-.459c.32-.305.909-.458 1.764-.458.855 0 1.444.153 1.764.458.321.306.756.459 1.307.459.55 0 .978-.153 1.283-.459.306-.305.887-.458 1.742-.458.55 0 .986.076 1.307.229.32.153.611.298.87.436.245.122.455.283.631.481.176.199.264.428.264.688 0 .26-.092.477-.275.653a.72.72 0 0 1-.654.15 3.29 3.29 0 0 1-1.042-.493c-.252-.206-.593-.309-1.042-.309-.55 0-1.006.153-1.355.458-.336.306-.924.459-1.764.459s-1.443-.153-1.764-.459c-.32-.305-.756-.458-1.306-.458ZM11 2.75c1.13 0 2.242.103 3.334.31 1.092.206 2.07.527 2.934.962.863.435 1.562 1 2.097 1.696.535.695.802 1.54.802 2.532 0 .26-.088.477-.264.653a.888.888 0 0 1-.653.264H2.75a.888.888 0 0 1-.653-.264.888.888 0 0 1-.264-.653c0-.993.267-1.837.802-2.532.535-.696 1.234-1.261 2.097-1.696.863-.435 1.842-.756 2.934-.962 1.092-.207 2.204-.31 3.334-.31Zm0 1.833c-1.894 0-3.48.237-4.756.71-1.275.474-2.089 1.154-2.44 2.04h14.391c-.35-.886-1.165-1.566-2.44-2.04-1.276-.473-2.862-.71-4.756-.71Z" />
-    </svg>
-  ),
-  pets: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="currentColor">
-      <path d="M4.125 11.115c-.642 0-1.184-.222-1.627-.665a2.272 2.272 0 0 1-.665-1.627c0-.642.222-1.184.665-1.627a2.272 2.272 0 0 1 1.627-.665c.641 0 1.184.222 1.627.665.443.443.665.985.665 1.627 0 .641-.222 1.184-.665 1.627a2.272 2.272 0 0 1-1.627.665Zm4.125-3.667c-.642 0-1.184-.221-1.627-.664a2.272 2.272 0 0 1-.665-1.628c0-.641.222-1.183.665-1.627a2.272 2.272 0 0 1 1.627-.664c.641 0 1.184.221 1.627.664.443.443.665.986.665 1.627 0 .642-.222 1.184-.665 1.628a2.272 2.272 0 0 1-1.627.664Zm5.5 0c-.642 0-1.184-.221-1.627-.664a2.272 2.272 0 0 1-.665-1.628c0-.641.222-1.183.665-1.627a2.272 2.272 0 0 1 1.627-.664c.641 0 1.184.221 1.627.664.443.443.665.986.665 1.627 0 .642-.222 1.184-.665 1.628a2.272 2.272 0 0 1-1.627.664Zm4.125 3.667c-.642 0-1.184-.222-1.627-.665a2.272 2.272 0 0 1-.665-1.627c0-.642.222-1.184.665-1.627a2.272 2.272 0 0 1 1.627-.665c.641 0 1.184.222 1.627.665.443.443.665.985.665 1.627 0 .641-.222 1.184-.665 1.627a2.272 2.272 0 0 1-1.627.665ZM6.096 20.281c-.688 0-1.264-.264-1.73-.79-.466-.528-.697-1.15-.697-1.868 0-.795.271-1.49.813-2.086.542-.596 1.081-1.184 1.616-1.764.443-.474.825-.988 1.146-1.546.32-.558.703-1.081 1.146-1.57.336-.397.725-.726 1.169-.986.443-.26.924-.39 1.443-.39.52 0 1 .122 1.444.367.443.244.833.565 1.169.962.428.489.806 1.016 1.135 1.581.328.566.714 1.092 1.157 1.581.535.58 1.074 1.169 1.616 1.765.542.596.813 1.29.813 2.085 0 .718-.233 1.34-.699 1.868-.466.527-1.043.79-1.73.79-.826 0-1.643-.068-2.453-.206-.81-.137-1.628-.206-2.453-.206s-1.642.069-2.452.206c-.81.138-1.627.206-2.453.206Z" />
-    </svg>
-  ),
-  family: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="currentColor">
-      <path d="M13.2917 10.7708C12.9708 10.7708 12.6997 10.6601 12.4781 10.4385C12.2566 10.217 12.1458 9.94583 12.1458 9.625C12.1458 9.30417 12.2566 9.03299 12.4781 8.81146C12.6997 8.58993 12.9708 8.47917 13.2917 8.47917C13.6125 8.47917 13.8837 8.58993 14.1052 8.81146C14.3267 9.03299 14.4375 9.30417 14.4375 9.625C14.4375 9.94583 14.3267 10.217 14.1052 10.4385C13.8837 10.6601 13.6125 10.7708 13.2917 10.7708ZM8.70833 10.7708C8.3875 10.7708 8.11632 10.6601 7.89479 10.4385C7.67326 10.217 7.5625 9.94583 7.5625 9.625C7.5625 9.30417 7.67326 9.03299 7.89479 8.81146C8.11632 8.58993 8.3875 8.47917 8.70833 8.47917C9.02917 8.47917 9.30035 8.58993 9.52188 8.81146C9.7434 9.03299 9.85417 9.30417 9.85417 9.625C9.85417 9.94583 9.7434 10.217 9.52188 10.4385C9.30035 10.6601 9.02917 10.7708 8.70833 10.7708ZM11 15.5833C10.0833 15.5833 9.25451 15.3313 8.51354 14.8271C7.77257 14.3229 7.22639 13.6583 6.875 12.8333H15.125C14.7736 13.6583 14.2274 14.3229 13.4865 14.8271C12.7455 15.3313 11.9167 15.5833 11 15.5833ZM11 19.25C9.85417 19.25 8.7809 19.0323 7.78021 18.5969C6.77951 18.1615 5.90868 17.5733 5.16771 16.8323C4.42674 16.0913 3.83854 15.2205 3.40312 14.2198C2.96771 13.2191 2.75 12.1458 2.75 11C2.75 9.85417 2.96771 8.7809 3.40312 7.78021C3.83854 6.77951 4.42674 5.90868 5.16771 5.16771C5.90868 4.42674 6.77951 3.83854 7.78021 3.40312C8.7809 2.96771 9.85417 2.75 11 2.75C12.1458 2.75 13.2191 2.96771 14.2198 3.40312C15.2205 3.83854 16.0913 4.42674 16.8323 5.16771C17.5733 5.90868 18.1615 6.77951 18.5969 7.78021C19.0323 8.7809 19.25 9.85417 19.25 11C19.25 12.1458 19.0323 13.2191 18.5969 14.2198C18.1615 15.2205 17.5733 16.0913 16.8323 16.8323C16.0913 17.5733 15.2205 18.1615 14.2198 18.5969C13.2191 19.0323 12.1458 19.25 11 19.25ZM11 17.4167C12.7722 17.4167 14.2847 16.7903 15.5375 15.5375C16.7903 14.2847 17.4167 12.7722 17.4167 11C17.4167 9.22778 16.7903 7.71528 15.5375 6.4625C14.2847 5.20972 12.7722 4.58333 11 4.58333C9.22778 4.58333 7.71528 5.20972 6.4625 6.4625C5.20972 7.71528 4.58333 9.22778 4.58333 11C4.58333 12.7722 5.20972 14.2847 6.4625 15.5375C7.71528 16.7903 9.22778 17.4167 11 17.4167Z" />
-    </svg>
-  ),
   tech: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="currentColor">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 22 22"
+      fill="currentColor"
+    >
       <path d="M6.806 8.685 10.221 3.117a1.06 1.06 0 0 1 .344-.332c.137-.069.283-.103.435-.103.153 0 .298.034.435.103.138.069.252.18.344.332l3.415 5.569c.091.153.137.313.137.481 0 .168-.038.32-.114.458a.865.865 0 0 1-.321.332.86.86 0 0 1-.481.127H7.585a.86.86 0 0 1-.481-.127.865.865 0 0 1-.32-.332.88.88 0 0 1-.115-.458c0-.168.046-.328.137-.482ZM16.042 20.167c-1.146 0-2.12-.401-2.922-1.203-.802-.802-1.203-1.776-1.203-2.922 0-1.146.401-2.12 1.203-2.922.802-.802 1.776-1.203 2.922-1.203 1.146 0 2.12.401 2.921 1.203.802.802 1.204 1.776 1.204 2.922 0 1.146-.402 2.12-1.204 2.922-.801.802-1.775 1.203-2.921 1.203ZM2.75 18.792v-5.5c0-.26.088-.478.264-.653a.888.888 0 0 1 .652-.264h5.5c.26 0 .478.088.654.264a.888.888 0 0 1 .263.653v5.5a.888.888 0 0 1-.263.652.888.888 0 0 1-.654.264h-5.5a.888.888 0 0 1-.652-.264.888.888 0 0 1-.264-.652ZM16.042 18.333c.641 0 1.184-.221 1.627-.664.443-.443.664-.986.664-1.627 0-.642-.221-1.184-.664-1.628a2.213 2.213 0 0 0-1.627-.664c-.642 0-1.184.221-1.628.664a2.213 2.213 0 0 0-.664 1.628c0 .641.221 1.184.664 1.627.444.443.986.664 1.628.664ZM4.583 17.875h3.667v-3.667H4.583v3.667ZM9.213 8.25h3.574L11 5.363 9.213 8.25Z" />
     </svg>
   ),
-  creative: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M7 14c-1.66 0-3-1.34-3-3 0-1.31.84-2.41 2-2.83V3.5a.5.5 0 0 1 1 0v4.67c1.16.42 2 1.52 2 2.83 0 1.66-1.34 3-3 3zm0-4c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm9.71-2.71L15.3 8.7a1 1 0 0 1-1.41 0L12.5 7.29a1 1 0 0 1 0-1.41l1.41-1.42a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1-.03 1.41zM20 12l-4.5 4.5-1.41-1.41L17.17 12H10v-2h7.17l-3.08-3.09 1.41-1.41L20 10v2zM7 16a5 5 0 0 0 5 5h5v-2h-5a3 3 0 0 1-3-3H7z" />
-    </svg>
-  ),
-  entertainment: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18 3v2h-2V3H8v2H6V3H4v18h2v-2h2v2h8v-2h2v2h2V3h-2zM8 17H6v-2h2v2zm0-4H6v-2h2v2zm0-4H6V7h2v2zm10 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z" />
-    </svg>
-  ),
   finance: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
       <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" />
     </svg>
   ),
+  entertainment: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
+      <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+    </svg>
+  ),
   gaming: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
       <path d="M21.58 16.09l-1.09-7.66C20.21 6.46 18.52 5 16.53 5H7.47C5.48 5 3.79 6.46 3.51 8.43l-1.09 7.66C2.2 17.63 3.39 19 4.94 19c.68 0 1.32-.27 1.8-.75L9 16h6l2.25 2.25c.48.48 1.13.75 1.8.75 1.56 0 2.75-1.37 2.53-2.91zM11 11H9v2H8v-2H6v-1h2V8h1v2h2v1zm4 2c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm2-3c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z" />
     </svg>
   ),
   education: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
       <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z" />
+    </svg>
+  ),
+  photo: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
+      <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+    </svg>
+  ),
+  travel: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
+      <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
     </svg>
   ),
 };
@@ -478,6 +654,13 @@ const flags = [
   { country: "Australia", Flag: AUFlag },
 ];
 
+const flagByCountry: Record<string, React.ComponentType> = {
+  "United States": USFlag,
+  Canada: CAFlag,
+  "United Kingdom": GBFlag,
+  Australia: AUFlag,
+};
+
 export interface Creator {
   id: number;
   name: string;
@@ -487,21 +670,117 @@ export interface Creator {
   gradient: string;
   video: string;
   category: string;
+  image?: string;
 }
 
+// Per-creator overrides keyed by "category:index"
+const creatorOverrides: Record<
+  string,
+  Partial<Omit<Creator, "id" | "category">>
+> = {
+  // Health & Wellness: Shelly, Noah, Calvin, Abby, Makena, Bella, Elle
+  "health:0": { image: "/creators/Health & Wellness/Shelly.jpeg" },
+  "health:1": { image: "/creators/Health & Wellness/Noah.png" },
+  "health:2": { image: "/creators/Health & Wellness/Calvin.png" },
+  "health:3": { image: "/creators/Health & Wellness/Abby.png" },
+  "health:4": { image: "/creators/Health & Wellness/Makena.png" },
+  "health:5": { image: "/creators/Health & Wellness/Bella.png" },
+  "health:6": { image: "/creators/Health & Wellness/Elle.png" },
+  // Social: Ayo, Max, Angela, Madison, Serena, Renae, Carly
+  "social:0": { image: "/creators/Social Networks & Relationship/Ayo.png" },
+  "social:1": { image: "/creators/Social Networks & Relationship/Max.png" },
+  "social:2": { image: "/creators/Social Networks & Relationship/Angela.png" },
+  "social:3": { image: "/creators/Social Networks & Relationship/Madison.png" },
+  "social:4": { image: "/creators/Social Networks & Relationship/Serena.png" },
+  "social:5": { image: "/creators/Social Networks & Relationship/Renae.png" },
+  "social:6": { image: "/creators/Social Networks & Relationship/Carly.png" },
+  // CPG: Ray, Max, Abby, Vika, Dre, Marcela
+  "cpg:0": { image: "/creators/CPG/Ray.png" },
+  "cpg:1": { image: "/creators/CPG/Max.png" },
+  "cpg:2": { image: "/creators/CPG/Abby.png" },
+  "cpg:3": { image: "/creators/CPG/Vika.png" },
+  "cpg:4": { image: "/creators/CPG/Dre.png" },
+  "cpg:5": { image: "/creators/CPG/Marcela.png" },
+  // Fashion: Jess, Alina, Meg, Marissa, Trinity, Sara, Austin
+  "fashion:0": { image: "/creators/Apparel & Fashion/Jess.png" },
+  "fashion:1": { image: "/creators/Apparel & Fashion/Alina.png" },
+  "fashion:2": { image: "/creators/Apparel & Fashion/Meg.jpeg" },
+  "fashion:3": { image: "/creators/Apparel & Fashion/Marissa.jpeg" },
+  "fashion:4": { image: "/creators/Apparel & Fashion/Trinity.png" },
+  "fashion:5": { image: "/creators/Apparel & Fashion/Sara.png" },
+  "fashion:6": { image: "/creators/Apparel & Fashion/Austin.jpeg" },
+  // Tech: Colin, Ayo, Mackenzie, Paige, Matt, Maxine
+  "tech:0": { image: "/creators/Tech & AI/Colin.png" },
+  "tech:1": { image: "/creators/Tech & AI/Ayo.png" },
+  "tech:2": { image: "/creators/Tech & AI/Mackenzie.png" },
+  "tech:3": { image: "/creators/Tech & AI/Paige.png" },
+  "tech:4": { image: "/creators/Tech & AI/Matt.png" },
+  "tech:5": { image: "/creators/Tech & AI/Maxine.png" },
+  // Finance: Cassandra, Monte, Justin, Emmy, Grace
+  "finance:0": { image: "/creators/Finance/Cassandra.png" },
+  "finance:1": { image: "/creators/Finance/Monte.png" },
+  "finance:2": { image: "/creators/Finance/Justin.png" },
+  "finance:3": { image: "/creators/Finance/Emmy.png" },
+  "finance:4": { image: "/creators/Finance/Grace.png" },
+  // Entertainment: Nina, Jenny, Frank, Jacob, Saumya, Gino
+  "entertainment:0": { image: "/creators/Entertainment & Music/Nina.png" },
+  "entertainment:1": { image: "/creators/Entertainment & Music/Jenny.png" },
+  "entertainment:2": { image: "/creators/Entertainment & Music/Frank.png" },
+  "entertainment:3": { image: "/creators/Entertainment & Music/Jacob.png" },
+  "entertainment:4": { image: "/creators/Entertainment & Music/Saumya.png" },
+  "entertainment:5": { image: "/creators/Entertainment & Music/Gino.png" },
+  // Gaming: Jordynn, Isaac, Hannah, Trey, Kaiya, Mykaila, Eric
+  "gaming:0": { image: "/creators/Gaming & Entertainment/Jordynn.png" },
+  "gaming:1": { image: "/creators/Gaming & Entertainment/Isaac.png" },
+  "gaming:2": { image: "/creators/Gaming & Entertainment/Hannah.png" },
+  "gaming:3": { image: "/creators/Gaming & Entertainment/Trey.jpeg" },
+  "gaming:4": { image: "/creators/Gaming & Entertainment/Kaiya.png" },
+  "gaming:5": { image: "/creators/Gaming & Entertainment/Mykaila.png" },
+  "gaming:6": { image: "/creators/Gaming & Entertainment/Eric.png" },
+  // Education: Brianna, Ali, LourDrick, Emma, Joe, Caitlin, Gray
+  "education:0": { image: "/creators/Education & Language/Brianna.png" },
+  "education:1": { image: "/creators/Education & Language/Ali.png" },
+  "education:2": { image: "/creators/Education & Language/LourDrick.png" },
+  "education:3": { image: "/creators/Education & Language/Emma.png" },
+  "education:4": { image: "/creators/Education & Language/Joe.png" },
+  "education:5": { image: "/creators/Education & Language/Caitlin.png" },
+  "education:6": { image: "/creators/Education & Language/Gray.png" },
+  // Photo: Sarah, Vivi, Hayden, Quis, Gyasi, Maya
+  "photo:0": { image: "/creators/Photo & Video Editing/Sarah.png" },
+  "photo:1": { image: "/creators/Photo & Video Editing/Vivi.png" },
+  "photo:2": { image: "/creators/Photo & Video Editing/Hayden.png" },
+  "photo:3": { image: "/creators/Photo & Video Editing/Quis.png" },
+  "photo:4": { image: "/creators/Photo & Video Editing/Gyasi.png" },
+  "photo:5": { image: "/creators/Photo & Video Editing/Maya.png" },
+  // Travel: Lydia, Nessa, Shelby, Alyssa, Victor, Tatsuya, Larine
+  "travel:0": { image: "/creators/Travel/lydia.png" },
+  "travel:1": { image: "/creators/Travel/Nessa.png" },
+  "travel:2": { image: "/creators/Travel/Shelby.png" },
+  "travel:3": { image: "/creators/Travel/Alyssa.png" },
+  "travel:4": { image: "/creators/Travel/Victor.png" },
+  "travel:5": { image: "/creators/Travel/Tatsuya.png" },
+  "travel:6": { image: "/creators/Travel/Larine.png" },
+};
+
 export const creatorsData: Creator[] = categories.flatMap((cat, catIdx) =>
-  namesByCat[cat.id].map((name, i) => ({
-    id: catIdx * 7 + i + 1,
-    name,
-    rating: ratingOptions[i],
-    country: flags[i % flags.length].country,
-    countryFlag: flags[i % flags.length].Flag,
-    gradient: gradients[i],
-    video: (videosByCategory[cat.id] ?? dummyVideos)[
-      i % (videosByCategory[cat.id] ?? dummyVideos).length
-    ],
-    category: cat.id,
-  })),
+  namesByCat[cat.id].map((name, i) => {
+    const overrides = creatorOverrides[`${cat.id}:${i}`];
+    return {
+      id: catIdx * 7 + i + 1,
+      name,
+      rating: (ratingsByCat[cat.id] ?? [])[i] ?? "4.5",
+      country: (countriesByCat[cat.id] ?? [])[i] ?? "United States",
+      countryFlag:
+        flagByCountry[(countriesByCat[cat.id] ?? [])[i] ?? "United States"] ??
+        USFlag,
+      gradient: gradients[i],
+      video: (videosByCategory[cat.id] ?? dummyVideos)[
+        i % (videosByCategory[cat.id] ?? dummyVideos).length
+      ],
+      category: cat.id,
+      ...overrides,
+    };
+  }),
 );
 
 export const platformLinks = [

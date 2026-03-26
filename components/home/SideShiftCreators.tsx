@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   categories,
@@ -13,7 +14,7 @@ import {
 function SideShiftCreators({
   platformMode = false,
   marketplaceMode = false,
-  autoplayVideos = true,
+  autoplayVideos = false,
   heading,
   subheading,
   badgeLabel,
@@ -233,18 +234,6 @@ function SideShiftCreators({
     isSwiping.current = false;
   }, []);
 
-  const handleCardClick = useCallback((index: number, creatorId: number, isActive: boolean) => {
-    if (didSwipe.current) {
-      didSwipe.current = false;
-      return;
-    }
-    if (isActive && !autoplayVideos) {
-      handleVideoToggle(creatorId);
-    } else {
-      setActiveIndex(index);
-    }
-  }, [autoplayVideos, handleVideoToggle]);
-
   const showCategoryBadge = !platformMode || !!badgeLabel;
 
   return (
@@ -304,7 +293,7 @@ function SideShiftCreators({
 
                 {/* Mobile: dropdown */}
                 <div
-                  className="relative w-full max-w-xs md:hidden"
+                  className="relative w-full max-w-sm md:hidden"
                   ref={dropdownRef}
                 >
                   <button
@@ -332,7 +321,7 @@ function SideShiftCreators({
                     </svg>
                   </button>
                   {dropdownOpen && (
-                    <div className="absolute left-0 right-0 top-full z-50 mt-2 rounded-2xl border border-gray-200 bg-white py-1 shadow-lg">
+                    <div className="mt-2 rounded-2xl border border-gray-200 bg-white py-1 shadow-lg">
                       {industryFilters.map((ind) => (
                         <button
                           key={ind.label}
@@ -499,14 +488,24 @@ function SideShiftCreators({
               (c) => c.id === creator.category,
             )?.label;
 
-            const cardWidth = 260;
+            const cardWidth = 285;
             const gap = 12;
             const translateX = offset * (cardWidth + gap);
 
             return (
               <div
                 key={`${creator.id}-${index}`}
-                onClick={() => handleCardClick(index, creator.id, isActive)}
+                onClick={() => {
+                  if (didSwipe.current) {
+                    didSwipe.current = false;
+                    return;
+                  }
+                  if (isActive && !autoplayVideos) {
+                    handleVideoToggle(creator.id);
+                  } else {
+                    setActiveIndex(index);
+                  }
+                }}
                 className="absolute flex h-full cursor-pointer items-center justify-center"
                 style={{
                   width: cardWidth,
@@ -524,14 +523,16 @@ function SideShiftCreators({
                     borderRadius: isActive ? 52 : 500,
                     transform: isActive ? "scale(1)" : "scale(0.84)",
                     opacity: isActive ? 1 : 0.9,
-                    height: isActive ? "92%" : "78%",
+                    height: isActive ? "82%" : "78%",
                     width: "100%",
                     transition: useTransition ? "all 0.5s ease-out" : "none",
                   }}
                 >
                   <div className="relative h-full w-full overflow-hidden rounded-[52px]">
                     {showCategoryBadge && (
-                      <div className="absolute top-4 left-1/2 z-20 -translate-x-1/2 rounded-full bg-[#A7D7FF] px-2.5 py-1 text-[11px] font-semibold whitespace-nowrap text-gray-800">
+                      <div
+                        className={`absolute top-4 left-1/2 z-20 -translate-x-1/2 rounded-full px-2.5 py-1 text-[11px] font-semibold whitespace-nowrap ${isActive ? "bg-white/80 text-gray-800 backdrop-blur-md shadow-sm" : "bg-white/30 text-white backdrop-blur-md border border-white/30"}`}
+                      >
                         {badgeLabel ?? categoryLabel}
                       </div>
                     )}
@@ -550,7 +551,7 @@ function SideShiftCreators({
                       preload="auto"
                     />
 
-                    {/* Mute toggle (top-right) — only on active card when playing */}
+                    {/* Active card: mute toggle (top-right) — only when playing */}
                     {isActive && playingVideoId === creator.id && (
                       <button
                         onClick={(e) => {
@@ -561,13 +562,31 @@ function SideShiftCreators({
                         aria-label={isMuted ? "Unmute" : "Mute"}
                       >
                         {isMuted ? (
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="white"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
                             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
                             <line x1="23" y1="9" x2="17" y2="15" />
                             <line x1="17" y1="9" x2="23" y2="15" />
                           </svg>
                         ) : (
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="white"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
                             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
                             <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
                           </svg>
@@ -575,55 +594,76 @@ function SideShiftCreators({
                       </button>
                     )}
 
-                    {isActive && !autoplayVideos && playingVideoId !== creator.id && (
-                      <div className="absolute inset-0 z-15 flex items-center justify-center pointer-events-none">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black/20 backdrop-blur-md border border-white/20 shadow-lg">
-                          <svg width="16" height="18" viewBox="0 0 18 20" fill="none" className="ml-0.5">
-                            <path d="M17 10L1 19V1L17 10Z" fill="white" fillOpacity="0.9" />
-                          </svg>
+                    {/* Active card: play icon (center) — only when paused */}
+                    {isActive &&
+                      !autoplayVideos &&
+                      playingVideoId !== creator.id && (
+                        <div className="absolute inset-0 z-15 flex items-center justify-center pointer-events-none">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black/20 backdrop-blur-md border border-white/20 shadow-lg">
+                            <svg
+                              width="16"
+                              height="18"
+                              viewBox="0 0 18 20"
+                              fill="none"
+                              className="ml-0.5"
+                            >
+                              <path
+                                d="M17 10L1 19V1L17 10Z"
+                                fill="white"
+                                fillOpacity="0.9"
+                              />
+                            </svg>
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
                     <div
                       className={`absolute inset-0 -z-10 bg-gradient-to-br ${creator.gradient}`}
                     />
 
-                    <div className="absolute inset-x-0 bottom-0 z-10 h-1/2 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
+                    {isActive && (
+                      <div className="absolute inset-x-0 bottom-0 z-10 h-1/3 bg-gradient-to-t from-black/30 to-transparent" />
+                    )}
 
                     {isActive && (
                       <div className="absolute inset-x-0 bottom-0 z-20 p-3">
-                        <div className="flex items-end justify-between gap-2 rounded-[20px] border border-white/80 bg-white/85 p-2.5 backdrop-blur-md">
+                        <div className="flex items-center justify-between gap-2 rounded-[14px] bg-white/40 px-2.5 py-2 backdrop-blur-sm">
                           <div className="flex flex-col gap-0.5">
-                            <span className="text-[15px] font-bold text-gray-900">
+                            <span className="text-[13px] font-semibold text-gray-900">
                               {creator.name}
                             </span>
-                            <span className="flex items-center gap-1 text-sm text-gray-700">
+                            <span className="inline-flex items-center gap-1 text-[11px] text-gray-800">
                               {creator.rating}
                               <svg
-                                width="14"
-                                height="14"
-                                viewBox="0 0 14 14"
-                                fill="none"
-                                className="mb-px"
+                                width="11"
+                                height="11"
+                                viewBox="0 0 20 20"
+                                fill="#f59e0b"
                               >
-                                <path
-                                  d="M7 0L8.572 4.837H13.657L9.543 7.826L11.115 12.663L7 9.674L2.886 12.663L4.457 7.826L.343 4.837H5.428L7 0Z"
-                                  fill="#FFD700"
-                                />
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.075 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.274-3.957z" />
                               </svg>
                             </span>
-                            <span className="inline-flex items-center gap-1.5 rounded-full bg-gray-50 px-2 py-0.5 text-[12px] font-medium text-gray-500">
+                            <span className="inline-flex items-center gap-1 text-[11px] text-gray-800">
                               <FlagIcon />
                               {creator.country}
                             </span>
                           </div>
                           <div
-                            className={`h-12 w-12 flex-shrink-0 overflow-hidden rounded-full bg-gradient-to-br ${creator.gradient}`}
+                            className={`h-9 w-9 flex-shrink-0 overflow-hidden rounded-full ring-1 ring-gray-200 bg-gradient-to-br ${creator.gradient}`}
                           >
-                            <div className="flex h-full w-full items-center justify-center text-base font-bold text-white/80">
-                              {creator.name[0]}
-                            </div>
+                            {creator.image ? (
+                              <Image
+                                src={creator.image}
+                                alt={creator.name}
+                                width={36}
+                                height={36}
+                                className="h-full w-full object-cover"
+                              />
+                            ) : (
+                              <div className="flex h-full w-full items-center justify-center text-sm font-bold leading-none text-white/80">
+                                {creator.name[0]}
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
