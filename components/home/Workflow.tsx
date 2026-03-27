@@ -161,7 +161,6 @@ function Workflow({
                   </Button>
                 </Link>
                 <p className="text-[14px] text-[rgba(32,32,32,0.5)]" dangerouslySetInnerHTML={{ __html: ctaNote ?? "Post your first job in 4 minutes &middot; No credit card required" }} />
-                </p>
               </div>
             )}
           </div>
