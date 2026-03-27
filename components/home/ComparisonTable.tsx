@@ -226,9 +226,7 @@ function ComparisonTable({
                 }}
               >
                 <Link
-                  href={
-                    "https://app.sideshift.app/signup"
-                  }
+                  href={ctaHref ?? "https://app.sideshift.app/signup"}
                 >
                   <button
                     onClick={() =>

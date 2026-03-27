@@ -39,11 +39,17 @@ function Workflow({
   heading,
   showSteps = false,
   showCta = false,
+  ctaText,
+  ctaHref,
+  ctaNote,
 }: {
   isCreator: boolean;
   heading?: string;
   showSteps?: boolean;
   showCta?: boolean;
+  ctaText?: string;
+  ctaHref?: string;
+  ctaNote?: string;
 }) {
   const variant = getHeroVariant();
 
@@ -144,18 +150,17 @@ function Workflow({
             {/* CTA — shown when showSteps or showCta is true */}
             {(showSteps || showCta) && (
               <div className="flex flex-col items-center gap-2">
-                <Link href="https://app.sideshift.app/signup">
+                <Link href={ctaHref ?? "https://app.sideshift.app/signup"}>
                   <Button
                     variant="primary"
                     onClick={() =>
                       handleCTAClick("start_free_trial_how_it_works", true, variant)
                     }
                   >
-                    <span>Start Your Free Trial</span>
+                    <span>{ctaText ?? "Start Your Free Trial"}</span>
                   </Button>
                 </Link>
-                <p className="text-[14px] text-[rgba(32,32,32,0.5)]">
-                  Post your first job in 4 minutes &middot; No credit card required
+                <p className="text-[14px] text-[rgba(32,32,32,0.5)]" dangerouslySetInnerHTML={{ __html: ctaNote ?? "Post your first job in 4 minutes &middot; No credit card required" }} />
                 </p>
               </div>
             )}
