@@ -227,7 +227,7 @@ function ComparisonTable({
               >
                 <Link
                   href={
-                    demoMode ? (ctaHref ?? "/contact") : "https://app.sideshift.app/signup"
+                    "https://app.sideshift.app/signup"
                   }
                 >
                   <button
@@ -314,11 +314,7 @@ function ComparisonTable({
                     style={{ padding: "16px 24px 24px" }}
                   >
                     <Link
-                      href={
-                        demoMode
-                          ? (ctaHref ?? "/contact")
-                          : "https://app.sideshift.app/signup"
-                      }
+                      href="https://app.sideshift.app/signup"
                     >
                       <button
                         onClick={() =>

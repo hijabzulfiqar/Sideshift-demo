@@ -130,7 +130,7 @@ const onHeroCTAClick = (cta: string) => {
               <div className="mt-4 flex flex-wrap items-center gap-2 sm:justify-center sm:gap-3.5 md:mt-8 md:justify-start">
                 {demoMode ? (
                   <Link
-                    href="/contact"
+                    href="https://app.sideshift.app/signup"
                     className="max-[320px]:w-full"
                     onClick={() => onHeroCTAClick("book_demo_hero")}
                   >
@@ -150,7 +150,7 @@ const onHeroCTAClick = (cta: string) => {
                       </Button>
                     </Link>
                     {!hideSecondaryCta && <Link
-                      href={overrides?.secondaryCta?.href ?? (isCreator ? "https://app.sideshift.app/signup" : "/contact")}
+                      href={overrides?.secondaryCta?.href ?? (isCreator ? "https://app.sideshift.app/signup" : "https://app.sideshift.app/signup")}
                       className="max-[320px]:w-full"
                       onClick={() => onHeroCTAClick(overrides?.secondaryCta?.event ?? (isCreator ? "Explore Gigs" : "Book Demo from Hero"))}
                     >
