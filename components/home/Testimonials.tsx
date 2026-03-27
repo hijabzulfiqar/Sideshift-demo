@@ -1,19 +1,5 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
-import Button from "../ui/Button";
-import { handleCTAClick } from "@/lib/handleCTAClick";
-import { getHeroVariant } from "@/lib/analytics";
-import type { CaseStudy } from "@/components/casestudy/CaseStudyCard";
-
-/*
-  Bento-grid testimonial section inspired by high-converting layouts:
-  - Lead with the number
-  - Mix formats: stats + quotes
-  - Real photos, real names, real titles
-  - Company logos at card bottom
-  - Asymmetric grid with varying card sizes
-*/
 
 type BentoCard = {
   stat?: string;
@@ -29,117 +15,104 @@ type BentoCard = {
 
 const brandCards: BentoCard[] = [
   {
-    stat: "100%",
-    statLabel: "Creator hiring needs filled in weeks",
-    quote:
-      "SideShift was a huge help for us in the gen z hiring process. We were able to fill 100% of our creator hiring needs in just a few weeks through the platform. SideShift is a cemented go-to for us whenever we are in need of creators.",
-    name: "Edward Tian",
-    title: "Founder, GPTZero",
-    avatar: "/assets/testimonials/2.avif",
-    logo: "/assets/brands/2.avif",
-    span: 2,
-  },
-  {
     quote:
       "The applicants have been super high quality! Unlike any platform I've used in the past.",
     name: "Luis Ocampo",
     title: "Founding Team, Partiful",
     avatar: "/assets/testimonials/1.avif",
-    logo: "/assets/brands/4.avif",
   },
   {
     quote:
-      "We had no luck with traditional platforms to find high quality creator talent until we turned to SideShift. We filled all our hiring needs through the platform.",
+      "SideShift was a huge help for us in the gen z hiring process. We were able to fill 100% of our creator hiring needs in just a few weeks through the platform. SideShift is a cemented go-to for us whenever we are in need of creators.",
+    name: "Edward Tian",
+    title: "Founder, GPTZero",
+    avatar: "/assets/testimonials/2.avif",
+    span: 2,
+  },
+  {
+    quote:
+      "We had no luck with traditional platforms to find high quality creator talent until we turned to SideShift. We filled all our hiring needs through the platform. SideShift is a cemented go-to for us whenever we need creators.",
     name: "Evan Dray",
     title: "Co-Founder, Astra",
     avatar: "/assets/testimonials/3.avif",
-    logo: "/assets/brands/5.avif",
   },
   {
-    stat: "5B+",
-    statLabel: "Views delivered last 90 days",
+    quote:
+      "SideShift is geared toward Gen Z and cuts through fluff on sites like LinkedIn and Handshake. I've seen better response rates, and with strong filtering, SideShift delivers the best candidates of any job board I've used. Recommend to any consumer startup focused on growth.",
+    name: "Jeremy Gross",
+    title: "Head of US Growth, Amo",
+    avatar: "/assets/testimonials/4.avif",
+    span: 2,
+  },
+  {
     quote:
       "Replit moves fast, and we needed a way to get in front of developers at scale without relying solely on ads. SideShift made that possible. The sheer volume of organic content we were able to push out through their creators turned into real distribution and traction for us.",
     name: "Horacio Lopez",
     title: "Revenue Operations @ Replit",
     avatar: "/assets/testimonials/5.avif",
-    logo: "/assets/brands/1.avif",
-    span: 2,
   },
   {
-    stat: "$100M+",
-    statLabel: "Paid out to creators",
-    quote:
-      "SideShift is geared toward Gen Z and cuts through fluff on sites like LinkedIn and Handshake. I've seen better response rates, and with strong filtering, SideShift delivers the best candidates of any job board I've used.",
-    name: "Jeremy Gross",
-    title: "Head of US Growth, Amo",
-    avatar: "/assets/testimonials/4.avif",
-    logo: "/assets/brands/3.avif",
-  },
-  {
-    stat: "10x",
-    statLabel: "Content output multiplier",
     quote:
       "SideShift has shown us how much of a multiplier authentic, organic short-form content can be. Their creator network helped unlock a new layer of growth that traditional paid channels never could. It's a playbook every high-growth company should have in their arsenal.",
     name: "Henrique Dubugras",
     title: "Founding CEO @ Brex",
     avatar: "/assets/testimonials/6.avif",
-    logo: "/assets/brands/6.avif",
     span: 2,
   },
 ];
 
 const creatorCards: BentoCard[] = [
   {
-    stat: "$7K+",
-    statLabel: "Monthly earnings in 6 months",
+    quote:
+      "SideShift has helped prep me for a career in marketing. For anybody that is interested in creating content, social media marketing, or growth roles in the future, I would highly recommend getting signed up on SideShift to gain experience!",
+    name: "Darah Emadi",
+    title: "",
+    avatar: "/assets/testimonials-creator/1.avif",
+  },
+  {
     quote:
       "SideShift has allowed me to pursue my passion of making music. Since starting 6 months ago I have been able to work with some incredible brands and grown to $7k+/ month. These side hustles not only pay the bills, but give me the flexibility to pursue my dreams.",
     name: "Timmy Koltermann",
-    title: "Music Creator",
+    title: "",
     avatar: "/assets/testimonials-creator/2.avif",
     span: 2,
   },
   {
     quote:
-      "SideShift has helped prep me for a career in marketing. For anybody that is interested in creating content, social media marketing, or growth roles in the future, I would highly recommend getting signed up on SideShift to gain experience!",
-    name: "Darah Emadi",
-    title: "Content Creator",
-    avatar: "/assets/testimonials-creator/1.avif",
-  },
-  {
-    quote:
-      "Wow, where do I start...the platform and team are really AMAZING! everyone's super good at what they do, whether you're a newbie or you've been in the game a long time, everyone's treated kindly and fairly.",
+      "Wow, where do I start\u2026the platform and team are really AMAZING! everyone\u2019s super good at what they do, whether you\u2019re a newbie or you\u2019ve been in the game a long time, everyone\u2019s treated kindly and fairly. really appreciate the opportunities I\u2019ve had through SideShift and forever grateful! \uD83E\uDEF6",
     name: "Lola Kamson",
-    title: "Content Creator",
+    title: "",
     avatar: "/assets/testimonials-creator/3.avif",
   },
   {
-    stat: "100+",
-    statLabel: "Brand partnerships available",
     quote:
       "Working with SideShift has been a blessing. As a full-time first-gen college student, its flexibility lets me focus on school while earning a decent income. I love creating content and working with a kind, supportive team that truly wants to see you win!",
     name: "Ayomide Somorin",
-    title: "College Student & Creator",
+    title: "",
     avatar: "/assets/testimonials-creator/4.avif",
     span: 2,
   },
   {
     quote:
-      "SideShift has been a real lifeline for me. Through SideShift, I've found flexible content creation jobs that fit around my class schedule. I'm confident I wouldn't have been able to support myself through university this semester without it.",
+      "SideShift has been a real lifeline for me. Through SideShift, I\u2019ve found flexible content creation jobs that fit around my class schedule. I\u2019m confident I wouldn\u2019t have been able to support myself through university this semester without it, and I\u2019m so grateful for the opportunities it\u2019s given me.",
     name: "Lourdrick Valsote",
-    title: "Student Creator",
+    title: "",
     avatar: "/assets/testimonials-creator/5.avif",
   },
   {
-    stat: "700K+",
-    statLabel: "Creators already onboarded",
     quote:
-      "SideShift has helped me grow as a creator and marketing professional. The opportunities I've had as a college student have been incredible - from working with startups to billion-dollar companies, SideShift has given me endless chances to prove myself and connect with industry pros.",
+      "SideShift has helped me grow as a creator and marketing professional. The opportunities I\u2019ve had as a college student have been incredible - from working with startups to billion-dollar companies, SideShift has given me endless chances to prove myself and connect with industry pros.",
     name: "Daniel Grospe",
-    title: "Creator & Marketing Professional",
+    title: "",
     avatar: "/assets/testimonials-creator/6.avif",
     span: 2,
+  },
+  {
+    quote:
+      "Working with SideShift has been such a win! As a full-time student, the remote flexibility has made life so much easier. It\u2019s helped me stay financially stable, create content I love, and grow with a supportive team. Easily one of the best things I\u2019ve done this year!",
+    name: "Ayomide Somorin",
+    title: "",
+    avatar: "/assets/testimonials-creator/7.avif",
   },
 ];
 
@@ -202,72 +175,7 @@ function BentoCardComponent({ card }: { card: BentoCard }) {
   );
 }
 
-function CaseStudyBentoCard({ study }: { study: CaseStudy }) {
-  return (
-    <Link
-      href={`/casestudies/${study.slug}`}
-      className="group relative flex h-full flex-col rounded-2xl border border-gray-100 bg-white p-5 transition-shadow duration-300 hover:shadow-md md:p-6"
-      style={{
-        boxShadow:
-          "0 1px 3px 0 rgba(0,0,0,0.04), 0 1px 2px -1px rgba(0,0,0,0.04)",
-      }}
-    >
-      {study.logo && (
-        <Image
-          src={study.logo}
-          alt={study.title}
-          width={80}
-          height={24}
-          className="mb-3 h-5 w-auto opacity-50 grayscale md:h-6"
-        />
-      )}
-      {study.metric && (
-        <div className="mb-3">
-          <span className="block text-[28px] leading-[1] font-extrabold tracking-tight text-gray-900 md:text-[36px]">
-            {study.metric}
-          </span>
-        </div>
-      )}
-      <h3 className="line-clamp-2 flex-1 text-[13px] leading-[1.5] font-semibold text-gray-900 min-[375px]:text-[14px] md:text-[15px]">
-        {study.title}
-      </h3>
-      <div className="mt-4 flex items-center gap-1 text-sm font-bold text-[#202020]">
-        Read More
-        <svg
-          width="11"
-          height="10"
-          viewBox="0 0 11 10"
-          fill="none"
-          className="transition-transform duration-200 group-hover:translate-x-0.5"
-        >
-          <path
-            d="M1 5h8.5M6.5 1.5 10 5l-3.5 3.5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </div>
-    </Link>
-  );
-}
-
-function Testimonials({
-  isCreator,
-  caseStudies,
-  demoMode = false,
-  ctaHref,
-  hideCta = false,
-}: {
-  isCreator: boolean;
-  /** Optional case studies to mix into the bento grid (subpage use) */
-  caseStudies?: CaseStudy[];
-  demoMode?: boolean;
-  ctaHref?: string;
-  hideCta?: boolean;
-}) {
-  const variant = getHeroVariant();
+function Testimonials({ isCreator }: { isCreator: boolean }) {
   const cards = isCreator ? creatorCards : brandCards;
 
   return (
@@ -295,51 +203,14 @@ function Testimonials({
                 <div
                   key={i}
                   className={
-                    card.span === 2
-                      ? "sm:col-span-2 md:col-span-2"
-                      : ""
+                    card.span === 2 ? "sm:col-span-2 md:col-span-2" : ""
                   }
                 >
                   <BentoCardComponent card={card} />
                 </div>
               ))}
-              {caseStudies?.map((study) => (
-                <div key={study.slug}>
-                  <CaseStudyBentoCard study={study} />
-                </div>
-              ))}
             </div>
 
-            {/* CTA */}
-            {!isCreator && !hideCta && (
-              demoMode ? (
-                <Link href={ctaHref ?? "/contact"}>
-                  <Button
-                    variant="primary"
-                    onClick={() =>
-                      handleCTAClick("book_demo_testimonials", true, variant)
-                    }
-                  >
-                    <span>Book a Demo</span>
-                  </Button>
-                </Link>
-              ) : (
-                <Link href="/casestudies">
-                  <Button
-                    variant="primary"
-                    onClick={() =>
-                      handleCTAClick(
-                        "Explore More Case Studies Testimonials",
-                        true,
-                        variant
-                      )
-                    }
-                  >
-                    <span>Explore More Case Studies</span>
-                  </Button>
-                </Link>
-              )
-            )}
           </div>
         </div>
       </div>

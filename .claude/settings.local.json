@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node:*)",
+      "Bash(git -C /c/dev/landing-page-demo show ba75921 --stat)",
+      "Bash(git -C /c/dev/landing-page-demo log --format=\"%ai %s\" -1 -- \"public/lottie/5.json\")",
+      "Bash(git -C /c/dev/landing-page-demo diff public/lottie/5.json)"
+    ]
+  }
+}
