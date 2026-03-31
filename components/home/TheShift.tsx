@@ -27,23 +27,6 @@ const cardImages = [
 export default function TheShift() {
   return (
     <>
-      {/* Callout Banner */}
-      <section className="relative">
-        <div className="px-global py-section-md pb-0">
-          <div className="max-w-global mx-auto">
-            <div className="metrics-card rounded-lg border-2 border-white px-6 py-6 md:px-10 md:py-8">
-              <p className="text-base leading-[1.5] font-medium text-[rgba(32,32,32,0.75)] md:text-lg">
-                AI slop sucks. Consumers don&apos;t trust influencers. Paid ads
-                cost more every quarter.{" "}
-                <span className="font-bold text-[#014163]">
-                  There is a better way.
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* The Shift + Why UGC 3-Card */}
       <section id="why-ugc" className="relative">
         <div className="px-global py-section-md">
