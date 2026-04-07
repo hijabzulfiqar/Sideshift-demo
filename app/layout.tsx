@@ -10,8 +10,8 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "SideShift - Book a Demo",
-  description: "SideShift - The UGC Platform for Brands. Book a demo today.",
+  title: "SideShift - Start Your Free Trial",
+  description: "SideShift - The UGC Platform for Brands. Start your free trial today.",
 };
 
 export default function RootLayout({
