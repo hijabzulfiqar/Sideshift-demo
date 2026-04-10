@@ -195,6 +195,17 @@ body {
       1.2px 1.5px 4.5px 0 rgba(1, 65, 99, 0.02);
   }
 
+  .painpoint-card {
+    background:
+      linear-gradient(
+        168deg,
+        rgba(224, 245, 255, 0.5) 0%,
+        rgba(255, 255, 255, 0.9) 50%,
+        rgba(240, 250, 255, 0.3) 100%
+      );
+    backdrop-filter: blur(8px);
+  }
+
   .workflow-placeholder {
     background: #b5b5b5;
   }

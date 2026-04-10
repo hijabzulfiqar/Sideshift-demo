@@ -90,7 +90,7 @@ export default function LandingPage() {
       <TickerBar />
 
       {/* Centered logo — no nav */}
-      <div className="flex items-center justify-center pt-5 pb-2 sm:pt-6 md:pt-8">
+      <div className="flex items-center justify-center pt-3 pb-1 sm:pt-6 sm:pb-2 md:pt-8">
         <Logo />
       </div>
 

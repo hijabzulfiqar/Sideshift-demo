@@ -69,17 +69,17 @@ const onHeroCTAClick = (cta: string) => {
   return (
     <section id="home" className="relative z-0">
       <div className="px-global">
-        <div className="max-w-global py-section-md relative mx-auto pt-[89px] sm:pt-[100px] md:pt-[118px]">
-          <div className="flex flex-col items-start sm:items-center md:flex-row md:items-start">
-            <div className="relative z-10 w-full max-w-[676px] md:min-w-[500px]">
-              <div className="flex flex-col items-start gap-3.5 sm:items-center md:items-start">
+        <div className="max-w-global py-section-md relative mx-auto pt-[56px] min-[480px]:pt-[72px] sm:pt-[88px] md:pt-[100px] lg:pt-[118px]">
+          <div className="flex flex-col items-start sm:items-center lg:flex-row lg:items-start">
+            <div className="relative z-10 w-full max-w-[676px] lg:min-w-[500px]">
+              <div className="flex flex-col items-start gap-2.5 sm:items-center sm:gap-3.5 lg:items-start">
                 {overrides?.label && (
-                  <p className="text-sm leading-[140%] font-medium tracking-[0.02em] text-[rgba(32,32,32,0.5)] md:text-base">
+                  <p className="text-xs leading-[140%] font-medium tracking-[0.02em] text-[rgba(32,32,32,0.5)] min-[375px]:text-[13px] sm:text-sm md:text-base">
                     {overrides.label}
                   </p>
                 )}
                 <div className="relative w-full">
-                  <h1 className="max-w-[20ch] text-[9vw] leading-[90%] font-bold tracking-[-0.05em] min-[375px]:text-[10vw] sm:mx-auto sm:text-center sm:text-[48px] md:mx-0 md:text-left md:text-[min(69px,4.7vw)]">
+                  <h1 className="max-w-[20ch] text-[10vw] leading-[90%] font-bold tracking-[-0.05em] min-[375px]:text-[11vw] sm:mx-auto sm:text-center sm:text-[48px] md:text-[56px] lg:mx-0 lg:text-left lg:text-[min(69px,4.7vw)]">
                     {overrides?.headline ? (
                       overrides.headline
                     ) : isCreator ? (
@@ -116,7 +116,7 @@ const onHeroCTAClick = (cta: string) => {
                     ))}
                   </div>
                 )}
-                <p className="max-w-[517px] text-[15px] leading-[135%] text-[rgba(32,32,32,0.75)] min-[375px]:text-base sm:text-center sm:text-lg md:text-left">
+                <p className="max-w-[517px] text-[14px] leading-[140%] text-[rgba(32,32,32,0.75)] min-[375px]:text-[15px] sm:text-center sm:text-base md:text-lg lg:text-left">
                   <span>
                     {overrides?.subtitle
                       ? overrides.subtitle
@@ -127,7 +127,7 @@ const onHeroCTAClick = (cta: string) => {
                 </p>
               </div>
               {/* CTA Buttons */}
-              <div className="mt-4 flex flex-wrap items-center gap-2 sm:justify-center sm:gap-3.5 md:mt-8 md:justify-start">
+              <div className="mt-3 flex flex-wrap items-center gap-2 min-[480px]:mt-4 sm:justify-center sm:gap-3.5 md:mt-6 lg:mt-8 lg:justify-start">
                 {demoMode ? (
                   <Link
                     href="https://app.sideshift.app/signup"
@@ -165,12 +165,12 @@ const onHeroCTAClick = (cta: string) => {
             </div>
             <div
               key={isCreator ? "creators" : "brands"}
-              className="relative z-0 mx-auto aspect-[400/300] w-full flex-1 sm:max-w-[500px] md:min-h-[450px] md:max-w-none md:min-w-[500px]"
+              className="relative z-0 mx-auto aspect-[4/3] w-full flex-1 min-[480px]:aspect-[16/10] sm:aspect-[16/9] md:aspect-[2/1] lg:aspect-auto lg:min-h-[450px] lg:min-w-[500px]"
             >
               {isCreator ? (
                 <LazyLottie
                   path={"/lottie/HERO-CREATORS.json"}
-                  className="absolute top-[95%] left-[0%] h-auto w-[185%] max-w-none -translate-x-1/2 -translate-y-1/2 md:top-[80%] md:left-[-10%] md:w-[200%]"
+                  className="absolute top-[90%] left-[0%] h-auto w-[185%] max-w-none -translate-x-1/2 -translate-y-1/2 min-[480px]:top-[85%] min-[480px]:left-[-5%] sm:top-[80%] sm:left-[-8%] sm:w-[170%] md:top-[75%] md:left-[-5%] md:w-[155%] lg:top-[80%] lg:left-[-10%] lg:w-[200%]"
                   loop={true}
                   autoplay={true}
                   loading={<HeroCreators className="h-full w-full" />}
@@ -178,7 +178,7 @@ const onHeroCTAClick = (cta: string) => {
               ) : (
                 <LazyLottie
                   path={"/lottie/HERO.json"}
-                  className="absolute top-[95%] left-[-10%] h-auto w-[240%] max-w-none -translate-x-1/2 -translate-y-1/2 md:top-[80%] md:left-[-5%] md:w-[240%]"
+                  className="absolute top-[85%] left-[-10%] h-auto w-[240%] max-w-none -translate-x-1/2 -translate-y-1/2 min-[480px]:top-[80%] min-[480px]:w-[210%] sm:top-[75%] sm:left-[-8%] sm:w-[180%] md:top-[70%] md:left-[-5%] md:w-[155%] lg:top-[80%] lg:left-[-5%] lg:w-[240%]"
                   loop={true}
                   autoplay={true}
                   loading={<HeroBrands className="h-full w-full" />}
@@ -191,7 +191,7 @@ const onHeroCTAClick = (cta: string) => {
             alt="Hero Light"
             width={550}
             height={373}
-            className="absolute top-[0%] left-[7%] -z-10 h-auto w-[550px]"
+            className="absolute top-[0%] left-[7%] -z-10 h-auto w-[300px] sm:w-[400px] md:w-[500px] lg:w-[550px]"
           />
         </div>
       </div>
