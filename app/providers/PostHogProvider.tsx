@@ -2,7 +2,7 @@
 
 import posthog from 'posthog-js'
 import { useEffect } from 'react'
-import { usePathname} from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
     const pathname = usePathname()
@@ -13,18 +13,19 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
             posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
                 api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
                 capture_pageview: false, // manual capture
+                disable_session_recording: true,//  keeps rrweb off
+                capture_heatmaps: false,        // kills heatmap data
             })
         }
     }, [])
 
     useEffect(() => {
         if (pathname && process.env.NEXT_PUBLIC_ENABLE_POSTHOG === 'true') {
-            // Only track brand-side pages
-            if (!pathname.startsWith('/creator')) {
-                posthog.capture('$pageview', {
-                    path: pathname,
-                })
-            }
+            const side = pathname.startsWith('/creator') ? 'creator' : 'brand'
+            posthog.capture('$pageview', {
+                path: pathname,
+                side,
+            })
         }
     }, [pathname])
     return <>{children}</>

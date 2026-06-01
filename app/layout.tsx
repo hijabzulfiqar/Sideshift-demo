@@ -3,6 +3,10 @@ import { Geist } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { PostHogProvider } from "./providers/PostHogProvider"
+import AttributionCapture from "../components/attribution/AttributionCapture";
+import AttributionLinkRewriter from "../components/attribution/AttributionLinkRewriter";
+import AttributionCookies from "../components/attribution/AttributionCookies";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,6 +47,9 @@ export default function RootLayout({
           }}
         />
         <PostHogProvider>
+           <AttributionCapture />
+            <AttributionLinkRewriter />
+            <AttributionCookies />
           {children}
         </PostHogProvider>
       </body>
