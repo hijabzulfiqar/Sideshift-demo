@@ -24,7 +24,7 @@ export default function FinalCta() {
               <Button
                 variant="primary"
                 onClick={() =>
-                  handleCTAClick("start_free_trial_final_cta", true, variant)
+                  handleCTAClick("start_free_trial_final_cta", variant)
                 }
               >
                 <span>Start Your Free Trial</span>

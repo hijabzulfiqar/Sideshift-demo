@@ -298,7 +298,7 @@ function FAQ({
                   Still have questions?
                 </p>
                 <Link href="https://app.sideshift.app/signup">
-                  <Button variant="primary" size="sm" onClick={() => handleCTAClick('Book Strategy Call FAQ', true, variant)}>
+                  <Button variant="primary" size="sm" onClick={() => handleCTAClick('Book Strategy Call FAQ', variant)}>
                     <span>Book a Demo</span>
                   </Button>
                 </Link>

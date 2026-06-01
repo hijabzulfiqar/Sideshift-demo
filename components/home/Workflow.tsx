@@ -154,7 +154,7 @@ function Workflow({
                   <Button
                     variant="primary"
                     onClick={() =>
-                      handleCTAClick("start_free_trial_how_it_works", true, variant)
+                      handleCTAClick("start_free_trial_how_it_works", variant)
                     }
                   >
                     <span>{ctaText ?? "Start Your Free Trial"}</span>

@@ -59,7 +59,7 @@ const onHeroCTAClick = (cta: string) => {
           path: window.location.pathname,
         });
       }
-        handleCTAClick(cta, true, variant); // call global function with variant
+        handleCTAClick(cta, variant); // call global function with variant
       
     }
   }

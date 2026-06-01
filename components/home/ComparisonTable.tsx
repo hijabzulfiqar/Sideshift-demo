@@ -234,7 +234,6 @@ function ComparisonTable({
                         demoMode
                           ? "book_demo_comparison_table"
                           : "try_sideshift_comparison_table",
-                        isBrand,
                         variant,
                       )
                     }
@@ -320,7 +319,6 @@ function ComparisonTable({
                             demoMode
                               ? "book_demo_comparison_table"
                               : "try_sideshift_comparison_table",
-                            isBrand,
                             variant,
                           )
                         }
