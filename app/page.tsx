@@ -24,7 +24,7 @@ const heroOverrides = {
     "The fastest-growing brands don\u2019t rely on influencers or paid ads anymore. They run high-volume UGC creator programs that go viral consistently \u2014 and SideShift is the only platform built to make that happen.",
   primaryCta: {
     text: "Start Your Free Trial",
-    href: "https://app.sideshift.app/signup",
+    href: "https://sideshift.app/plans",
     event: "start_free_trial_hero",
   },
 };
