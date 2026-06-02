@@ -130,7 +130,7 @@ const onHeroCTAClick = (cta: string) => {
               <div className="mt-3 flex flex-wrap items-center gap-2 min-[480px]:mt-4 sm:justify-center sm:gap-3.5 md:mt-6 lg:mt-8 lg:justify-start">
                 {demoMode ? (
                   <Link
-                    href="https://app.sideshift.app/signup"
+                    href="https://sideshift.app/plans"
                     className="max-[320px]:w-full"
                     onClick={() => onHeroCTAClick("book_demo_hero")}
                   >
@@ -141,7 +141,7 @@ const onHeroCTAClick = (cta: string) => {
                 ) : (
                   <>
                     <Link
-                      href={overrides?.primaryCta?.href ?? "https://app.sideshift.app/signup"}
+                      href={overrides?.primaryCta?.href ?? "https://sideshift.app/plans"}
                       className="max-[320px]:w-full"
                       onClick={() => onHeroCTAClick(overrides?.primaryCta?.event ?? (isCreator ? "Join as a Creator" : "Start Free Trial from Hero"))}
                     >
@@ -150,7 +150,7 @@ const onHeroCTAClick = (cta: string) => {
                       </Button>
                     </Link>
                     {!hideSecondaryCta && <Link
-                      href={overrides?.secondaryCta?.href ?? (isCreator ? "https://app.sideshift.app/signup" : "https://app.sideshift.app/signup")}
+                      href={overrides?.secondaryCta?.href ?? (isCreator ? "https://sideshift.app/plans" : "https://sideshift.app/plans")}
                       className="max-[320px]:w-full"
                       onClick={() => onHeroCTAClick(overrides?.secondaryCta?.event ?? (isCreator ? "Explore Gigs" : "Book Demo from Hero"))}
                     >

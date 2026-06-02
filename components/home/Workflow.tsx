@@ -150,7 +150,7 @@ function Workflow({
             {/* CTA — shown when showSteps or showCta is true */}
             {(showSteps || showCta) && (
               <div className="flex flex-col items-center gap-2">
-                <Link href={ctaHref ?? "https://app.sideshift.app/signup"}>
+                <Link href={ctaHref ?? "https://sideshift.app/plans"}>
                   <Button
                     variant="primary"
                     onClick={() =>

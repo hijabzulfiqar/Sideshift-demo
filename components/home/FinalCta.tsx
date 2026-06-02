@@ -20,7 +20,7 @@ export default function FinalCta() {
               Join 1,000+ brands using SideShift to turn UGC creators into
               their most profitable growth channel.
             </p>
-            <Link href="https://app.sideshift.app/signup">
+            <Link href="https://sideshift.app/plans">
               <Button
                 variant="primary"
                 onClick={() =>
