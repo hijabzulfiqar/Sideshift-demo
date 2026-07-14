@@ -16,18 +16,18 @@ type BentoCard = {
 const brandCards: BentoCard[] = [
   {
     quote:
-      "The applicants have been super high quality! Unlike any platform I've used in the past.",
-    name: "Luis Ocampo",
-    title: "Founding Team, Partiful",
-    avatar: "/assets/testimonials/1.avif",
-  },
-  {
-    quote:
       "SideShift was a huge help for us in the gen z hiring process. We were able to fill 100% of our creator hiring needs in just a few weeks through the platform. SideShift is a cemented go-to for us whenever we are in need of creators.",
     name: "Edward Tian",
     title: "Founder, GPTZero",
     avatar: "/assets/testimonials/2.avif",
     span: 2,
+  },
+  {
+    quote:
+      "The applicants have been super high quality! Unlike any platform I've used in the past.",
+    name: "Luis Ocampo",
+    title: "Founding Team, Partiful",
+    avatar: "/assets/testimonials/1.avif",
   },
   {
     quote:

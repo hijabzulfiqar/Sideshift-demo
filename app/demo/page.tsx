@@ -137,7 +137,7 @@ export default function DemoPage() {
         <div className="px-global py-section-md pb-10">
           <div className="max-w-global mx-auto flex flex-col items-center gap-6 text-center">
             <p className="text-sm text-[rgba(32,32,32,0.5)]">
-              SideShift &mdash; Copyright &copy; 2025. All Rights Reserved.
+              SideShift &mdash; Copyright &copy; 2026. All Rights Reserved.
             </p>
             <p className="max-w-[700px] text-xs leading-[1.5] text-[rgba(32,32,32,0.35)]">
               This site is not a part of the Facebook website or Facebook Inc.

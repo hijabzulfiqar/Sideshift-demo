@@ -4,7 +4,6 @@ import LazyLottie from "../ui/LazyLottie";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import { handleCTAClick } from "@/lib/handleCTAClick";
-import { getHeroVariant } from "@/lib/analytics";
 
 const steps = [
   {
@@ -51,8 +50,6 @@ function Workflow({
   ctaHref?: string;
   ctaNote?: string;
 }) {
-  const variant = getHeroVariant();
-
   return (
     <section id="how-it-works" className="relative z-0 scroll-mt-[-145px]">
       <div className="px-global py-section-md">
@@ -150,17 +147,17 @@ function Workflow({
             {/* CTA — shown when showSteps or showCta is true */}
             {(showSteps || showCta) && (
               <div className="flex flex-col items-center gap-2">
-                <Link href={ctaHref ?? "https://sideshift.app/plans"}>
+                <Link href={ctaHref ?? "https://sideshift.app/plans/brands"}>
                   <Button
                     variant="primary"
                     onClick={() =>
-                      handleCTAClick("start_free_trial_how_it_works", variant)
+                      handleCTAClick("start_free_trial_how_it_works")
                     }
                   >
-                    <span>{ctaText ?? "Start Your Free Trial"}</span>
+                    <span>{ctaText ?? "Launch your campaign"}</span>
                   </Button>
                 </Link>
-                <p className="text-[14px] text-[rgba(32,32,32,0.5)]" dangerouslySetInnerHTML={{ __html: ctaNote ?? "Post your first job in 4 minutes &middot; No credit card required" }} />
+                <p className="text-[14px] text-[rgba(32,32,32,0.5)]" dangerouslySetInnerHTML={{ __html: ctaNote ?? "Go live in under 10 minutes &middot; No credit card required" }} />
               </div>
             )}
           </div>

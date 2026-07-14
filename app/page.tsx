@@ -12,6 +12,7 @@ import PainPoints from "@/components/home/PainPoints";
 import TheShift from "@/components/home/TheShift";
 import CaseStudies from "@/components/home/CaseStudies";
 import FinalCta from "@/components/home/FinalCta";
+import StickyMobileCta from "@/components/home/StickyMobileCta";
 import Logo from "@/components/Logo";
 import Link from "next/link";
 import Script from "next/script";
@@ -19,12 +20,12 @@ import Script from "next/script";
 /* ── Hero copy overrides ── */
 const heroOverrides = {
   label: "Attention: Consumer App, SaaS & E-Commerce Founders",
-  headline: "Turn Creators Into Your Most Profitable Growth Channel",
+  headline: "Run Your Entire Creator Program From One Place",
   subtitle:
-    "The fastest-growing brands don\u2019t rely on influencers or paid ads anymore. They run high-volume UGC creator programs that go viral consistently \u2014 and SideShift is the only platform built to make that happen.",
+    "You\u2019re sourcing on TikTok, paying on Venmo, and guessing which creator actually worked. SideShift runs it all in one place \u2014 sourcing, payments, and real-time performance \u2014 so you test at volume and scale the ones that hit.",
   primaryCta: {
-    text: "Start Your Free Trial",
-    href: "https://sideshift.app/plans",
+    text: "Launch your campaign",
+    href: "https://sideshift.app/plans/brands",
     event: "start_free_trial_hero",
   },
 };
@@ -117,11 +118,13 @@ export default function LandingPage() {
         {/* 6. How it works (lottie animation + CTA) */}
         <Workflow isCreator={isCreator} showCta />
 
+        {/* 9. Case Studies */}
+        <CaseStudies />
+
         {/* 8. Comparison Table */}
         <ComparisonTable heading="The New Standard for Creator Marketing" />
 
-        {/* 9. Case Studies */}
-        <CaseStudies />
+
 
         {/* 10. Testimonials */}
         <Testimonials isCreator={isCreator} />
@@ -133,12 +136,15 @@ export default function LandingPage() {
         <FinalCta />
       </main>
 
+      {/* Sticky mobile CTA — appears after the hero CTA scrolls out of view */}
+      <StickyMobileCta />
+
       {/* ── Minimal Footer ── */}
       <footer className="relative mt-auto">
         <div className="px-global py-section-md pb-10">
           <div className="max-w-global mx-auto flex flex-col items-center gap-6 text-center">
             <p className="text-sm text-[rgba(32,32,32,0.5)]">
-              SideShift &mdash; Copyright &copy; 2025. All Rights Reserved.
+              SideShift &mdash; Copyright &copy; 2026. All Rights Reserved.
             </p>
             <p className="max-w-[700px] text-xs leading-[1.5] text-[rgba(32,32,32,0.35)]">
               This site is not a part of the Facebook website or Facebook Inc.
