@@ -2,10 +2,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
-import Button from "../ui/Button";
-import { handleCTAClick } from "@/lib/handleCTAClick";
-import { getHeroVariant } from "@/lib/analytics";
 const creatorFaqData = [
   {
     id: 1,
@@ -74,7 +70,7 @@ const brandFaqData = [
     id: 1,
     question: "How do I get started?",
     answer:
-      "Create a free SideShift business account, post your first opportunity, and instantly reach thousands of high-quality, Gen Z UGC creators.",
+      "Create a free SideShift account and post an opportunity. Most teams go live in under 10 minutes and start receiving creator applications within 24 hours.",
   },
   {
     id: 2,
@@ -98,12 +94,13 @@ const brandFaqData = [
     id: 6,
     question: "UGC vs. Influencer Marketing—what's the difference?",
     answer:
-      "Influencers charge a premium for their audience. With UGC you can post hundreds of videos and test dozens of content formats for the cost of a few influencer posts. TikTok and Instagram algorithms even boost fresh accounts, giving organic content a lift.",
+      "Influencers charge a premium for access to their audience, and you can't iterate on the content. With UGC, you run dozens of creators for the same budget, test different formats, and keep what works. TikTok and Instagram algorithms also boost fresh accounts — so new creator pages often outperform established ones organically.",
   },
   {
     id: 7,
     question: "What should I expect? & how is success measured?",
-    answer: `In the first 30 days, build your creator team, test different formats, and identify content-market fit (CMF). During months 2-3, double down on what works and scale your UGC spend to improve ROAS. Focus on ROAS over CPM as your main performance metric. Consistent, high-volume UGC also strengthens TikTok/Instagram SEO and lowers overall marketing costs.`,
+    answer:
+      "First 30 days: build your creator team, test formats, and find what converts. Months 2–3: scale the creators that work and cut the ones that don't. Track ROAS, not CPM — that's the number that matters.",
   },
   {
     id: 9,
@@ -133,13 +130,13 @@ const brandFaqData = [
     id: 13,
     question: "How do I know creators won't ghost my campaign?",
     answer:
-      "Every creator on SideShift has a verified track record and response rate visible on their profile. Our contract system includes deadlines and milestone tracking — if a creator goes silent, you're notified immediately and can replace them with one click. Teams using SideShift report a 90%+ completion rate on contracted campaigns.",
+      "Every creator has a visible track record and response rate on their profile. The contract system includes deadlines and milestone tracking — if someone goes silent, you're notified immediately and can replace them in one click. Completion rate across contracted campaigns is over 90%.",
   },
   {
     id: 14,
     question: "How does SideShift compare to hiring an agency?",
     answer:
-      "Most agencies charge $5,000–$10,000/month for creator management. SideShift gives you direct access to 700,000+ creators starting at $99/month — that's about $0.40 per video at scale. You keep full control of briefs, approvals, and payments. No retainer. No markups on creator fees. Cancel anytime.",
+      "Most agencies charge $5,000–$10,000/month for creator management. SideShift gives you direct access to 700,000+ creators starting at $299/month. You keep full control of briefs, approvals, and payments. No retainer. No markups on creator fees. Cancel anytime.",
   },
   {
     id: 15,
@@ -178,7 +175,6 @@ function FAQ({
 }) {
   const [expandedItem, setExpandedItem] = useState<number | null>(1);
   const faqData = customFaqData ?? (isCreator ? creatorFaqData : brandFaqData);
-  const variant = getHeroVariant();
   const toggleExpanded = (itemId: number) => {
     setExpandedItem(expandedItem === itemId ? null : itemId);
   };
@@ -291,19 +287,6 @@ function FAQ({
               ))}
             </div>
 
-            {/* Still have questions? */}
-            {!isCreator && !hideCta && (
-              <div className="flex flex-col items-center gap-2 pt-4 min-[375px]:gap-3 min-[375px]:pt-6">
-                <p className="text-center text-[14px] text-gray-600 min-[375px]:text-base">
-                  Still have questions?
-                </p>
-                <Link href="https://sideshift.app/contact">
-                  <Button variant="primary" size="sm" onClick={() => handleCTAClick('Book Strategy Call FAQ', variant)}>
-                    <span>Book a Demo</span>
-                  </Button>
-                </Link>
-              </div>
-            )}
           </div>
         </div>
       </div>

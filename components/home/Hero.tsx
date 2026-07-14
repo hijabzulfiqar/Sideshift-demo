@@ -5,9 +5,6 @@ import LazyLottie from "../ui/LazyLottie";
 import Link from "next/link";
 import HeroCreators from "@/public/lottie/HERO-CREATORS.svg";
 import HeroBrands from "@/public/lottie/HERO.svg";
-import { useEffect, useState } from "react";
-import posthog from "posthog-js";
-import { getHeroVariant, HeroVariant } from "@/lib/analytics";
 import { handleCTAClick } from "@/lib/handleCTAClick";
 
 
@@ -31,36 +28,9 @@ function Hero({
   demoMode?: boolean;
   hideSecondaryCta?: boolean;
 }) {
-  const [variant, setVariant] = useState<HeroVariant>('A');
-  const [hasMounted, setHasMounted] = useState(false);
-
-
-  useEffect(() => {
-    setHasMounted(true);
-    // Only run variant logic for brands
-    if (!isCreator && process.env.NEXT_PUBLIC_ENABLE_HERO_AB === 'true') {
-      const v = getHeroVariant(); // returns 'A' or 'B'
-      setVariant(v);
-    }
-  }, []);
-  const getBrandHeadline = () => {
-  if (!hasMounted) return ""; // prevent hydration mismatch
-  return variant === 'A'
-    ? "Turn creators into your most profitable growth channel"
-    : "Run 10x more UGC tests without growing your team";
-};
-const onHeroCTAClick = (cta: string) => {
+  const onHeroCTAClick = (cta: string) => {
     if (!isCreator) { // Only for brands
-
-      if (process.env.NEXT_PUBLIC_ENABLE_HERO_AB === 'true') {
-        posthog.capture('hero_cta_clicked', {
-          variant,
-          cta,
-          path: window.location.pathname,
-        });
-      }
-        handleCTAClick(cta, variant); // call global function with variant
-      
+      handleCTAClick(cta); // call global function
     }
   }
 
@@ -97,7 +67,7 @@ const onHeroCTAClick = (cta: string) => {
                         </span>
                       </>
                     ) : (
-                      hasMounted ? getBrandHeadline() : ""
+                      "Turn creators into your most profitable growth channel"
                     )}
                   </h1>
                 </div>
@@ -127,10 +97,10 @@ const onHeroCTAClick = (cta: string) => {
                 </p>
               </div>
               {/* CTA Buttons */}
-              <div className="mt-3 flex flex-wrap items-center gap-2 min-[480px]:mt-4 sm:justify-center sm:gap-3.5 md:mt-6 lg:mt-8 lg:justify-start">
+              <div id="hero-cta" className="mt-3 flex flex-wrap items-center gap-2 min-[480px]:mt-4 sm:justify-center sm:gap-3.5 md:mt-6 lg:mt-8 lg:justify-start">
                 {demoMode ? (
                   <Link
-                    href="https://sideshift.app/plans"
+                    href="https://sideshift.app/plans/brands"
                     className="max-[320px]:w-full"
                     onClick={() => onHeroCTAClick("book_demo_hero")}
                   >
@@ -141,16 +111,16 @@ const onHeroCTAClick = (cta: string) => {
                 ) : (
                   <>
                     <Link
-                      href={overrides?.primaryCta?.href ?? "https://sideshift.app/plans"}
+                      href={overrides?.primaryCta?.href ?? "https://sideshift.app/plans/brands"}
                       className="max-[320px]:w-full"
                       onClick={() => onHeroCTAClick(overrides?.primaryCta?.event ?? (isCreator ? "Join as a Creator" : "Start Free Trial from Hero"))}
                     >
                       <Button variant="primary" className="max-[320px]:w-full">
-                        <span>{overrides?.primaryCta?.text ?? (isCreator ? "Join as a Creator" : "Start Your Free Trial")}</span>
+                        <span>{overrides?.primaryCta?.text ?? (isCreator ? "Join as a Creator" : "Launch your campaign")}</span>
                       </Button>
                     </Link>
                     {!hideSecondaryCta && <Link
-                      href={overrides?.secondaryCta?.href ?? (isCreator ? "https://sideshift.app/plans" : "https://sideshift.app/plans")}
+                      href={overrides?.secondaryCta?.href ?? (isCreator ? "https://sideshift.app/plans/brands" : "https://sideshift.app/plans/brands")}
                       className="max-[320px]:w-full"
                       onClick={() => onHeroCTAClick(overrides?.secondaryCta?.event ?? (isCreator ? "Explore Gigs" : "Book Demo from Hero"))}
                     >
@@ -161,6 +131,9 @@ const onHeroCTAClick = (cta: string) => {
                   </>
                 )}
               </div>
+              <p className="mt-3 text-[11px] text-[rgba(32,32,32,0.5)] sm:text-center sm:text-[13px] lg:text-left">
+                Go live in under 10 minutes &middot; No credit card required
+              </p>
 
             </div>
             <div

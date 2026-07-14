@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { handleCTAClick } from "@/lib/handleCTAClick";
-import { getHeroVariant } from "@/lib/analytics";
 
 interface FeatureRow {
   name: string;
@@ -140,14 +139,13 @@ function ComparisonTable({
   ctaText?: string;
   ctaHref?: string;
 } = {}) {
-  const variant = getHeroVariant();
   const isBrand = true;
   const displayFeatures = rows ?? features;
   const displayCol1 = col1Header ?? "SideShift";
   const displayCol2 = col2Header ?? "Doing it yourself";
   const displayCol3 = col3Header ?? "Hiring an agency";
   const displayCtaText =
-    ctaText ?? (demoMode ? "Book a Demo" : "Start Free Trial");
+    ctaText ?? (demoMode ? "Book a Demo" : "Launch your campaign");
 
   return (
     <section id="comparison-table" className="relative mt-5 bg-white">
@@ -226,7 +224,7 @@ function ComparisonTable({
                 }}
               >
                 <Link
-                  href={ctaHref ?? "https://sideshift.app/plans"}
+                  href={ctaHref ?? "https://sideshift.app/plans/brands"}
                 >
                   <button
                     onClick={() =>
@@ -234,7 +232,6 @@ function ComparisonTable({
                         demoMode
                           ? "book_demo_comparison_table"
                           : "try_sideshift_comparison_table",
-                        variant,
                       )
                     }
                     className="cta-button-dark cursor-pointer rounded-full px-6 py-3 text-base font-normal whitespace-nowrap text-white"
@@ -311,7 +308,7 @@ function ComparisonTable({
                     style={{ padding: "16px 24px 24px" }}
                   >
                     <Link
-                      href={ctaHref ?? "https://sideshift.app/plans"}
+                      href={ctaHref ?? "https://sideshift.app/plans/brands"}
                     >
                       <button
                         onClick={() =>
@@ -319,7 +316,6 @@ function ComparisonTable({
                             demoMode
                               ? "book_demo_comparison_table"
                               : "try_sideshift_comparison_table",
-                            variant,
                           )
                         }
                         className="cta-button-dark cursor-pointer rounded-full px-6 py-3 text-base font-normal whitespace-nowrap text-white"

@@ -42,6 +42,27 @@ function Brands({ isCreator }: { isCreator: boolean }) {
                     className="h-[22px] w-auto shrink-0 min-[375px]:h-[24px] sm:h-[28px]"
                   />
                   <Image
+                    src="/assets/brands/grammarly.avif"
+                    alt="Grammarly"
+                    width={300}
+                    height={30}
+                    className="h-[22px] w-auto shrink-0 grayscale opacity-40 scale-150 min-[375px]:h-[24px] sm:h-[20px] ml-5 mr-5"
+                  />
+                   <Image
+                    src="/assets/brands/cursor.avif"
+                    alt="Cursor"
+                    width={100}
+                    height={28}
+                    className="h-[22px] w-auto shrink-0 brightness-200 opacity-35 min-[375px]:h-[24px] sm:h-[28px]"
+                  />
+                  <Image
+                    src="/assets/brands/microsoft.avif"
+                    alt="Microsoft"
+                    width={130}
+                    height={28}
+                    className="h-[22px] w-auto shrink-0 grayscale opacity-60 min-[375px]:h-[24px] sm:h-[28px]"
+                  />
+                  <Image
                     src="/assets/brands/4.avif"
                     alt="Brand 4"
                     width={122}
