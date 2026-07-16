@@ -4,6 +4,7 @@ import LazyLottie from "../ui/LazyLottie";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import { handleCTAClick } from "@/lib/handleCTAClick";
+import { DEFAULT_CTA_TEXT } from "@/lib/useCtaText";
 
 const steps = [
   {
@@ -154,7 +155,7 @@ function Workflow({
                       handleCTAClick("start_free_trial_how_it_works")
                     }
                   >
-                    <span>{ctaText ?? "Launch your campaign"}</span>
+                    <span>{ctaText ?? DEFAULT_CTA_TEXT}</span>
                   </Button>
                 </Link>
                 <p className="text-[14px] text-[rgba(32,32,32,0.5)]" dangerouslySetInnerHTML={{ __html: ctaNote ?? "Go live in under 10 minutes &middot; No credit card required" }} />

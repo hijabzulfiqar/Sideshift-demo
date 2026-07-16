@@ -3,8 +3,13 @@
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import { handleCTAClick } from "@/lib/handleCTAClick";
+import { DEFAULT_CTA_TEXT } from "@/lib/useCtaText";
 
-export default function FinalCta() {
+export default function FinalCta({
+  ctaText = DEFAULT_CTA_TEXT,
+}: {
+  ctaText?: string;
+}) {
   return (
     <section className="relative">
       <div className="px-global py-section-md">
@@ -24,7 +29,7 @@ export default function FinalCta() {
                   handleCTAClick("start_free_trial_final_cta")
                 }
               >
-                <span>Launch your campaign</span>
+                <span>{ctaText}</span>
               </Button>
             </Link>
             <p className="text-[14px] text-[rgba(32,32,32,0.5)]">

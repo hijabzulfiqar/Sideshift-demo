@@ -6,6 +6,7 @@ import Link from "next/link";
 import HeroCreators from "@/public/lottie/HERO-CREATORS.svg";
 import HeroBrands from "@/public/lottie/HERO.svg";
 import { handleCTAClick } from "@/lib/handleCTAClick";
+import { DEFAULT_CTA_TEXT } from "@/lib/useCtaText";
 
 
 interface HeroOverrides {
@@ -116,7 +117,7 @@ function Hero({
                       onClick={() => onHeroCTAClick(overrides?.primaryCta?.event ?? (isCreator ? "Join as a Creator" : "Start Free Trial from Hero"))}
                     >
                       <Button variant="primary" className="max-[320px]:w-full">
-                        <span>{overrides?.primaryCta?.text ?? (isCreator ? "Join as a Creator" : "Launch your campaign")}</span>
+                        <span>{overrides?.primaryCta?.text ?? (isCreator ? "Join as a Creator" : DEFAULT_CTA_TEXT)}</span>
                       </Button>
                     </Link>
                     {!hideSecondaryCta && <Link
