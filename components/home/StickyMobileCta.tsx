@@ -4,13 +4,18 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import { handleCTAClick } from "@/lib/handleCTAClick";
+import { DEFAULT_CTA_TEXT } from "@/lib/useCtaText";
 
 /**
  * Sticky bottom CTA bar for mobile (< md).
  * Hidden while the hero CTA (#hero-cta) is in view; slides up once the user
  * scrolls past it, and hides again when they scroll back to the hero.
  */
-export default function StickyMobileCta() {
+export default function StickyMobileCta({
+  ctaText = DEFAULT_CTA_TEXT,
+}: {
+  ctaText?: string;
+}) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -39,7 +44,7 @@ export default function StickyMobileCta() {
         onClick={() => handleCTAClick("signup_sticky_mobile")}
       >
         <Button variant="primary" className="w-full">
-          <span>Launch your campaign</span>
+          <span>{ctaText}</span>
         </Button>
       </Link>
     </div>

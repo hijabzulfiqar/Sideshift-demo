@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { handleCTAClick } from "@/lib/handleCTAClick";
+import { DEFAULT_CTA_TEXT } from "@/lib/useCtaText";
 
 interface FeatureRow {
   name: string;
@@ -145,7 +146,7 @@ function ComparisonTable({
   const displayCol2 = col2Header ?? "Doing it yourself";
   const displayCol3 = col3Header ?? "Hiring an agency";
   const displayCtaText =
-    ctaText ?? (demoMode ? "Book a Demo" : "Launch your campaign");
+    ctaText ?? (demoMode ? "Book a Demo" : DEFAULT_CTA_TEXT);
 
   return (
     <section id="comparison-table" className="relative mt-5 bg-white">

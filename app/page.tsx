@@ -16,15 +16,16 @@ import StickyMobileCta from "@/components/home/StickyMobileCta";
 import Logo from "@/components/Logo";
 import Link from "next/link";
 import Script from "next/script";
+import { useCtaText, DEFAULT_CTA_TEXT } from "@/lib/useCtaText";
 
 /* ── Hero copy overrides ── */
-const heroOverrides = {
+const baseHeroOverrides = {
   label: "Attention: Consumer App, SaaS & E-Commerce Founders",
   headline: "Run Your Entire Creator Program From One Place",
   subtitle:
     "You\u2019re sourcing on TikTok, paying on Venmo, and guessing which creator actually worked. SideShift runs it all in one place \u2014 sourcing, payments, and real-time performance \u2014 so you test at volume and scale the ones that hit.",
   primaryCta: {
-    text: "Launch your campaign",
+    text: DEFAULT_CTA_TEXT,
     href: "https://sideshift.app/plans/brands",
     event: "start_free_trial_hero",
   },
@@ -85,6 +86,16 @@ const faqItems = [
 export default function LandingPage() {
   const isCreator = false;
 
+  // SINGLE resolution point for the go-cta-text-v1 experiment.
+  // Resolved once here, registered once here, then passed down as a prop to
+  // every CTA. No CTA component reads the flag or PostHog directly.
+  const ctaText = useCtaText();
+
+  const heroOverrides = {
+    ...baseHeroOverrides,
+    primaryCta: { ...baseHeroOverrides.primaryCta, text: ctaText },
+  };
+
   return (
     <>
       {/* Top ticker bar */}
@@ -116,13 +127,13 @@ export default function LandingPage() {
         <TheShift />
 
         {/* 6. How it works (lottie animation + CTA) */}
-        <Workflow isCreator={isCreator} showCta />
+        <Workflow isCreator={isCreator} showCta ctaText={ctaText} />
 
         {/* 9. Case Studies */}
         <CaseStudies />
 
         {/* 8. Comparison Table */}
-        <ComparisonTable heading="The New Standard for Creator Marketing" />
+        <ComparisonTable heading="The New Standard for Creator Marketing" ctaText={ctaText} />
 
 
 
@@ -133,11 +144,11 @@ export default function LandingPage() {
         <FAQ isCreator={isCreator} customFaqData={faqItems} />
 
         {/* 12. Final CTA */}
-        <FinalCta />
+        <FinalCta ctaText={ctaText} />
       </main>
 
       {/* Sticky mobile CTA — appears after the hero CTA scrolls out of view */}
-      <StickyMobileCta />
+      <StickyMobileCta ctaText={ctaText} />
 
       {/* ── Minimal Footer ── */}
       <footer className="relative mt-auto">
