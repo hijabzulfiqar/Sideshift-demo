@@ -34,6 +34,12 @@ export default function RootLayout({
         className={`${geistSans.variable} relative z-0 flex min-h-screen flex-col font-sans antialiased`}
       >
         <Script
+          id="callix-pixel"
+          src="https://app.callix.io/pixel/v1/track.js"
+          data-callix-id="j57bddh8dt5b8zqwkt9k61mygd89p3xd"
+          strategy="afterInteractive"
+        />
+        <Script
           id="clarity-script"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
