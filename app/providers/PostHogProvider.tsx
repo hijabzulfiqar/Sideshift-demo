@@ -26,7 +26,6 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         if (pathname && process.env.NEXT_PUBLIC_ENABLE_POSTHOG === 'true') {
-            (pathname && process.env.NEXT_PUBLIC_ENABLE_POSTHOG === 'true') {
             const side = pathname.startsWith('/creator')
                 ? 'creator'
                 : pathname.startsWith('/agency')
