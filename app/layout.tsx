@@ -39,21 +39,6 @@ export default function RootLayout({
           data-callix-id="j57bddh8dt5b8zqwkt9k61mygd89p3xd"
           strategy="afterInteractive"
         />
-        {(process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID) && (
-          <>
-            <Script id="ga-gtag-src"
-              src={`https://www.googletagmanager.com/gtag/js?id=${(process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID)}`}
-              strategy="afterInteractive" />
-            <Script id="ga-gtag-init" strategy="afterInteractive"
-              dangerouslySetInnerHTML={{
-                __html: `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '${(process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID)}');
-      `}} />
-          </>
-        )}
         <Script
           id="clarity-script"
           strategy="afterInteractive"
